@@ -38,6 +38,20 @@
                         <label for="phy">Phy</label>
                         <input type="text" id="phy" name="phy"/>
                     </div>
+                    <div>
+                        <label for="club">Club:</label>
+                        <select id="club">
+                            <option value="barcelona">Barcelona</option>
+                            <option value="cska-sofia">CSKA Sofia</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="country">Country:</label>
+                        <select id="country">
+                            <option value="bg">Bulgaria</option>
+                            <option value="ar">Armenia</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         <?php

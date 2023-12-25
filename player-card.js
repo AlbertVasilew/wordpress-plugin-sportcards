@@ -2,6 +2,22 @@ class PlayerCard {
     constructor(ctx, color) {
         this.ctx = ctx;
         this.color = color;
+        this.clubLogo = new Image();
+        this.countryFlag = new Image();
+    }
+
+    setClubLogo(value) {
+        this.clubLogo.src = value;
+        this.clubLogo.onload = () => {
+            this.ctx.drawImage(this.clubLogo, 90, 210, 40, 50);
+        }
+    }
+
+    setCountryFlag(value) {
+        this.countryFlag.src = value;
+        this.countryFlag.onload = () => {
+            this.ctx.drawImage(this.countryFlag, 90, 165, 40, 25);
+        }
     }
 
     setRating(value) {
