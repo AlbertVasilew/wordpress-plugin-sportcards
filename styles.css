@@ -1,0 +1,17 @@
+#SportCardsCustomizerWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#myCanvas {
+
+}
+
+#SportCardsCustomizerFieldsContainer {
+    width: 40%;
+}
+
+.SportCardsCustomizerField {
+
+}

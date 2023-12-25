@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write Over Image</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="500"></canvas>
+  <script src="methods.js"></script>
+  <script type="module">
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    var img = new Image();
+    img.src = 'assets/card.png';
+
+    const flag = new Image();
+    flag.src = 'assets/flag.png';
+
+    const club = new Image();
+    club.src = 'assets/club.png';
+
+    const color = "black";
+
+
+
+    img.onload = function() {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        setRating(ctx, color, 100);
+        setPosition(ctx, color, "ST");
+
+
+      ctx.drawImage(flag, 90, 165, 40, 25);
+      ctx.drawImage(club, 90, 210, 40, 50);
+
+      ctx.font = 'bold 30px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('ИМЕ', 167, 295);
+
+      ctx.font = 'bold 23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('99', 95, 340);
+
+      ctx.font = '23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('PAC', 135, 340);
+
+      ctx.font = 'bold 23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('99', 95, 370);
+
+      ctx.font = '23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('SHO', 135, 370);
+
+      ctx.font = 'bold 23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('99', 95, 400);
+
+      ctx.font = '23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('PAS', 135, 400);
+
+      ctx.font = 'bold 23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('99', 210, 370);
+
+      ctx.font = '23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('DEF', 250, 370);
+
+      ctx.font = 'bold 23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('99', 210, 340);
+
+      ctx.font = '23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('DRI', 250, 340);
+
+      ctx.font = 'bold 23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('99', 210, 400);
+
+      ctx.font = '23px Arial';
+      ctx.fillStyle = color;
+      ctx.fillText('PHY', 250, 400);
+    };
+  </script>
+</body>
+</html>
