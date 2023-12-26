@@ -1,15 +1,6 @@
 <?php
-    function enqueue_write_over_image_script() {
-        wp_enqueue_script(
-            'write-over-image-script',
-            plugin_dir_url(__FILE__) . 'player-card.js',
-            array(),
-            null,
-            true
-        );
-    }
-
-    add_action('wp_enqueue_scripts', 'enqueue_write_over_image_script');
+    wp_enqueue_script(
+        'write-over-image-script', plugin_dir_url(__FILE__) . 'player-card.js', array(), null, true);
 ?>
 
 <script type="module">

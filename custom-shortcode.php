@@ -2,6 +2,7 @@
     wp_enqueue_style('sportcards_styles', plugin_dir_url(__FILE__) . 'styles.css');
 
     function sportcards_hello_world_shortcode() {
+        ob_start();
         ?>
             <div id="SportCardsCustomizerWrapper">
                 <canvas id="myCanvas" width="400" height="500"></canvas>
@@ -55,8 +56,9 @@
                 </div>
             </div>
         <?php
-
+        
         include plugin_dir_path(__FILE__) . 'write-over-image-plugin.php';
+        return ob_get_clean();
     }
 
     add_shortcode('sportcards_hello_world', 'sportcards_hello_world_shortcode');
