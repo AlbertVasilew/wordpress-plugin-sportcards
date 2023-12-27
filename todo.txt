@@ -6,3 +6,4 @@ V 4. Country flag change
 6. Cards change
 ---
 7. Place order with custom picture and data in it
+8. Advanced pricing

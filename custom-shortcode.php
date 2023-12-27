@@ -77,6 +77,25 @@
                         <div class="FieldContainer__label">PHY</div>
                         <input type="text" id="phy" class="FieldContainer__field"/>
                     </div>
+                    <div class="FieldContainer">
+                        <div class="FieldContainer__label">Дизайн</div>
+                        <div class="FieldContainer__field--cards">
+                        <?php
+                            $imageFolder = plugin_dir_path(__FILE__) . 'assets/cards';
+                            $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+                            $files = scandir($imageFolder);
+
+                            foreach ($files as $file) {
+                                $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                if (in_array($extension, $allowedExtensions)) {
+                                    $imageUrl = plugins_url('/assets/cards/', __FILE__) . $file;
+                                    echo '<img class="CardImage" src="' . $imageUrl . '" alt="' . $file . '">';
+                                }
+                            }
+                        ?>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         <?php

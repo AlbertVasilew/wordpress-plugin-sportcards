@@ -12,11 +12,15 @@
         document.getElementById("SportCardsCustomizerFieldsContainer")
             .addEventListener("change", event => updateCanvasValues());
 
-        const updateCanvasValues = () => {
+        document.querySelectorAll(".CardImage").forEach(thumbnail =>
+            thumbnail.addEventListener('click', () => updateCanvasValues(thumbnail.src)));
+
+        const updateCanvasValues = cardImageUrl => {
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             const cardImage = new Image();
-            cardImage.src = '<?php echo plugins_url('/assets/cards/', __FILE__); ?>' + `card.png`;
+            cardImage.src = cardImageUrl ?
+                cardImageUrl : '<?php echo plugins_url('/assets/cards/', __FILE__); ?>' + `card-design-1.png`;
 
             cardImage.onload = () => {
                 context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);

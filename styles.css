@@ -28,7 +28,17 @@
     width: 30% !important;
 }
 
-.FieldContainer__field {
+.FieldContainer__field, .FieldContainer__field--cards {
     width: 70% !important;
     padding: 5px;
+}
+
+.FieldContainer__field--cards {
+    display: flex;
+    overflow: auto;
+}
+
+.CardImage {
+    width: 50px;
+    margin: 5px;
 }
