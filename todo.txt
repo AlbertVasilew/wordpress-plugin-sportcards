@@ -7,3 +7,4 @@ V 6. Cards change
 ---
 7. Place order with custom picture and data in it
 8. Advanced pricing
+9. Fix card design changing

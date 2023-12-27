@@ -18,9 +18,9 @@
                     <div class="FieldContainer">
                         <div class="FieldContainer__label">Размер</div>
                         <select id="size" class="FieldContainer__field">
-                            <option value="small">Малък</option>
-                            <option value="medium">Среден</option>
-                            <option value="large">Голям</option>
+                            <option value="small">Малък - 24x15</option>
+                            <option value="medium">Среден - 30x19</option>
+                            <option value="large">Голям - 40x25</option>
                         </select>
                     </div>
                     <div class="FieldContainer">
@@ -97,7 +97,11 @@
                     </div>
                     <div class="FieldContainer">
                         <div class="FieldContainer__label">Цвят на текста</div>
-                        <input type="color" id="selectedColor" class="FieldContainer__field" value="#ff0000">
+                        <input type="color" id="selectedColor" class="FieldContainer__field" value="#ffffff">
+                    </div>
+                    <div id="PriceContainer">
+                        Крайна цена:
+                        <div id="PriceContainer__price"></div>
                     </div>
                 </div>
             </div>

@@ -42,3 +42,14 @@
     width: 50px;
     margin: 5px;
 }
+
+#PriceContainer {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+#PriceContainer__price {
+    font-weight: normal;
+    margin-left: 20px;
+}
