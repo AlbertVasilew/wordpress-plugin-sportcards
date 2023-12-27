@@ -1,9 +1,9 @@
-1. Color picker
+V 1. Color picker
 V 2. Fields for customizing
 V 3. Flag change
 V 4. Country flag change
 5. Upload custom image in canvas for player area
-6. Cards change
+V 6. Cards change
 ---
 7. Place order with custom picture and data in it
 8. Advanced pricing

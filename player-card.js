@@ -6,6 +6,10 @@ class PlayerCard {
         this.countryFlag = new Image();
     }
 
+    setColor(value) {
+        this.color = value;
+    }
+
     setClubLogo(value) {
         this.clubLogo.src = value;
         this.clubLogo.onload = () => {

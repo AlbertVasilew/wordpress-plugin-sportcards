@@ -31,8 +31,8 @@
                 playerCard.setCountryFlag('<?php echo plugins_url('/assets/countries/', __FILE__); ?>' +
                     `${document.getElementById('country').value}.png`);
 
-                playerCard.setPosition("ST");
-
+                playerCard.setColor(document.getElementById('selectedColor').value);
+                playerCard.setPosition(document.getElementById('position').value);
                 playerCard.setRating(document.getElementById('rating').value);
                 playerCard.setName(document.getElementById('name').value);
                 playerCard.setPac(document.getElementById('pac').value);

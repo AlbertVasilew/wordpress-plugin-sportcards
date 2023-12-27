@@ -26,9 +26,9 @@
                     <div class="FieldContainer">
                         <div class="FieldContainer__label">Позиция</div>
                         <select id="position" class="FieldContainer__field">
-                            <option value="gk">GK</option>
-                            <option value="lb">LB</option>
-                            <option value="lwb">LWB</option>
+                            <option value="GK">GK</option>
+                            <option value="LB">LB</option>
+                            <option value="LWB">LWB</option>
                         </select>
                     </div>
                     <div class="FieldContainer">
@@ -94,7 +94,10 @@
                             }
                         ?>
                         </div>
-                        
+                    </div>
+                    <div class="FieldContainer">
+                        <div class="FieldContainer__label">Цвят на текста</div>
+                        <input type="color" id="selectedColor" class="FieldContainer__field" value="#ff0000">
                     </div>
                 </div>
             </div>
