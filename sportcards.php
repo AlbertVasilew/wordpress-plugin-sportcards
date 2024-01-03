@@ -8,5 +8,4 @@
     Domain Path:  /languages
     */
 
-    include_once(plugin_dir_path(__FILE__) . 'custom-shortcode.php');
-?>
+    include_once(plugin_dir_path(__FILE__) . 'define-shortcode.php');
