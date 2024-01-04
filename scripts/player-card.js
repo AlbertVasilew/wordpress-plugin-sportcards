@@ -4,6 +4,26 @@ class PlayerCard {
         this.color = color;
         this.clubLogo = new Image();
         this.countryFlag = new Image();
+        
+        this.material = null;
+        this.size = null;
+        this.rating = null;
+        this.position = null;
+        this.name = null;
+        this.pac = null;
+        this.sho = null;
+        this.pas = null;
+        this.dri = null;
+        this.def = null;
+        this.phy = null;
+    }
+
+    setMaterial(value) {
+        this.material = value;
+    }
+
+    setSize(value) {
+        this.size = value;
     }
 
     setColor(value) {
@@ -28,18 +48,21 @@ class PlayerCard {
         this.ctx.font = 'bold 35px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 90, 115);
+        this.rating = value;
     }
 
     setPosition(value) {
         this.ctx.font = '30px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 90, 150);
+        this.position = value;
     }
 
     setName(value) {
         this.ctx.font = 'bold 30px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 167, 295);
+        this.name = value;
     }
 
     setPac(value) {
@@ -50,6 +73,8 @@ class PlayerCard {
         this.ctx.font = 'bold 23px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 95, 340);
+
+        this.pac = value;
     }
 
     setSho(value) {
@@ -60,6 +85,8 @@ class PlayerCard {
         this.ctx.font = 'bold 23px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 95, 370);
+
+        this.sho = value;
     }
 
     setPas(value) {
@@ -70,6 +97,8 @@ class PlayerCard {
         this.ctx.font = 'bold 23px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 95, 400);
+
+        this.pas = value;
     }
 
     setDef(value) {
@@ -80,6 +109,8 @@ class PlayerCard {
         this.ctx.font = 'bold 23px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 210, 370);
+
+        this.def = value;
     }
 
     setDri(value) {
@@ -90,6 +121,8 @@ class PlayerCard {
         this.ctx.font = 'bold 23px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 210, 340);
+
+        this.dri = value;
     }
 
     setPhy(value) {
@@ -100,5 +133,17 @@ class PlayerCard {
         this.ctx.font = 'bold 23px Arial';
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(value, 210, 400);
+
+        this.phy = value;
+    }
+
+    getCardData() {
+        return {
+            material: this.material,
+            size: this.size,
+            rating: this.rating,
+            position: this.position,
+            name: this.name
+        }
     }
 }

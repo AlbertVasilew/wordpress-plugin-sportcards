@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
             playerCard.setCountryFlag(php_vars.countries +
                 `${document.getElementById('country').value}.png`);
 
+            playerCard.setMaterial(document.getElementById('material').value);
+            playerCard.setSize(document.getElementById('size').value);
             playerCard.setColor(document.getElementById('selectedColor').value);
             playerCard.setPosition(document.getElementById('position').value);
             playerCard.setRating(document.getElementById('rating').value);
@@ -95,13 +97,14 @@ document.addEventListener('DOMContentLoaded', function () {
     updateVisualization();
 
     jQuery("#addToCartBtn").on("click", () => {
-        jQuery.post( 
-            wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'add_to_cart' ), 
-            {
-                product_id: 32, 
-                quantity: 1,
-                custom_info: 'custom_value'
+        jQuery.ajax({
+            url: php_vars.ajax_url,
+            type: 'POST',
+            dataType: 'JSON',
+            data: { action: 'add_to_cart', card_data: playerCard.getCardData() },
+            success: function(response) {
+                window.location.href = response.redirect_url;
             }
-        );
+        });
     })
 });
