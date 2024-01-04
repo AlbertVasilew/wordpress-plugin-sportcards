@@ -6,5 +6,7 @@ V 4. Country flag change
 V 6. Cards change
 ---
 7. Place order with custom picture and data in it
-8. Advanced pricing
+8. Advanced pricing and applying into cart
 9. Fix card design changing
+V 10. Add to cart with custom data
+11. Redesign using bootstrap
