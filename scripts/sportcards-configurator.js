@@ -10,6 +10,97 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll(".CardImage").forEach(thumbnail =>
         thumbnail.addEventListener('click', () => updateVisualization(thumbnail.src)));
 
+
+    let cropper;
+
+    function openModal() {
+        document.getElementById('image-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('image-modal').style.display = 'none';
+    }
+
+    function handleImageSelection(e) {
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (readerEvent) {
+                const uploadedImage = document.getElementById('uploaded-image');
+                uploadedImage.src = readerEvent.target.result;
+
+                // Enable the crop button
+                document.getElementById('crop-button').disabled = false;
+
+                // Initialize Cropper
+                cropper = new Cropper(uploadedImage, {
+                    aspectRatio: 1, // Set the aspect ratio as needed
+                    viewMode: 1,    // Set the view mode (0, 1, 2, 3)
+                });
+
+                openModal(); // Open the modal when an image is uploaded
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    document.getElementById('image-input').addEventListener('change', handleImageSelection);
+
+    document.getElementById('crop-button').addEventListener('click', function () {
+        const croppedDataURL = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+        const playerImage = new Image();
+        
+        playerImage.src = croppedDataURL;
+
+        playerImage.onload = () => {
+            context.drawImage(playerImage, 165, 90, 180, 180);
+        }
+
+        // Close the modal after cropping
+        closeModal();
+    });
+
+    document.getElementById('image-input').addEventListener('change', handleImageSelection);
+
+    document.getElementById('image-input').addEventListener('change', function (e) {
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (readerEvent) {
+                const uploadedImage = document.getElementById('uploaded-image');
+                uploadedImage.src = readerEvent.target.result;
+
+                // Enable the crop button
+                document.getElementById('crop-button').disabled = false;
+
+                // Initialize Cropper
+                const cropper = new Cropper(uploadedImage, {
+                    aspectRatio: 1, // Set the aspect ratio as needed
+                    viewMode: 1,    // Set the view mode (0, 1, 2, 3)
+                });
+
+                // Handle crop button click
+                document.getElementById('crop-button').addEventListener('click', function () {
+                    // Get the cropped dataURL
+                    const croppedDataURL = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+                    const playerImage = new Image();
+                    playerImage.src = croppedDataURL;
+
+                    playerImage.onload = () => {
+                        context.drawImage(playerImage, 165, 90, 180, 180);
+                    }
+                });
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
     const calculateMaterialAndSizePrice = () => {
         const material = document.getElementById('material');
         const size = document.getElementById('size');

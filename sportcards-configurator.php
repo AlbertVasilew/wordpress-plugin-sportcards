@@ -92,6 +92,19 @@
             <div class="FieldContainer__label">Цвят на текста</div>
             <input type="color" id="selectedColor" class="FieldContainer__field" value="#ffffff">
         </div>
+        <div class="FieldContainer">
+            <div class="FieldContainer__label">Снимка на футболист</div>
+
+            <input type="file" id="image-input" accept="image/*">
+            <div id="image-container"></div>
+
+            <div id="image-modal">
+                <div id="modal-content">
+                    <span id="modal-close" onclick="closeModal()">Приложи</span>
+                    <img id="cropped-image" src="#" alt="Cropped Image">
+                </div>
+            </div>
+        </div>
         <div id="PriceContainer">
             Крайна цена:
             <div id="PriceContainer__price"></div>
