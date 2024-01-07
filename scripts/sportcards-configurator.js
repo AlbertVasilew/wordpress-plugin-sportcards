@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const closeModal = () => {
         document.getElementById('image-modal').style.display = 'none';
-        cropper.destroy();
     }
 
     document.getElementById('image-input').addEventListener('change', event => {
@@ -36,18 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('modal-close').addEventListener('click', () => {
-        const croppedDataUrl = cropper.getCroppedCanvas().toDataURL();
         const img = new Image();
 
-        img.src = croppedDataUrl;
+        img.src = cropper.getCroppedCanvas().toDataURL();
         img.onload = () => context.drawImage(img, 165, 90, 180, 180);
 
         closeModal();
     });
-
-
-
-
 
 
 
@@ -143,7 +137,11 @@ document.addEventListener('DOMContentLoaded', function () {
             url: php_vars.ajax_url,
             type: 'POST',
             dataType: 'JSON',
-            data: { action: 'add_to_cart', card_data: playerCard.getCardData() },
+            data: {
+                action: 'add_to_cart',
+                card_data: playerCard.getCardData(),
+                imageData: cropper?.getCroppedCanvas().toDataURL()
+            },
             success: function(response) {
                 window.location.href = response.redirect_url;
             }
