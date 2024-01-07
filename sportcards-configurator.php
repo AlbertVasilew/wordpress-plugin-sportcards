@@ -96,13 +96,10 @@
             <div class="FieldContainer__label">Снимка на футболист</div>
 
             <input type="file" id="image-input" accept="image/*">
-            <div id="image-container"></div>
-
+            
             <div id="image-modal">
-                <div id="modal-content">
-                    <span id="modal-close" onclick="closeModal()">Приложи</span>
-                    <img id="cropped-image" src="#" alt="Cropped Image">
-                </div>
+                <img id="cropped-image" src="#" alt="Cropped Image">
+                <div id="modal-close">Приложи</div>
             </div>
         </div>
         <div id="PriceContainer">
