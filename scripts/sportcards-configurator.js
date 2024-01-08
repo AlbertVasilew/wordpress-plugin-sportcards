@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
             countrySelect.append(`<option value="${key}">${countries[key]}</option>`)
     });
 
-
-
     let cropper;
 
     const openModal = () => {
@@ -117,8 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cardImage.onload = () => {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);
 
-            playerCard.setClubLogo(php_vars.clubs +
-                `${document.getElementById('club').value}.png`);
+            playerCard.setClubLogo(document.getElementById('club').value);
 
             playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
             playerCard.setMaterial(document.getElementById('material').value);

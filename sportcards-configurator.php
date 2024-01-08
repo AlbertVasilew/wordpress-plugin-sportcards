@@ -1,3 +1,11 @@
+<?php
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'sportcards_clubs';
+
+    $query = "SELECT * FROM $table_name";
+    $results = $wpdb->get_results($query);
+?>
+
 <div id="SportCardsCustomizerWrapper">
     <canvas id="myCanvas" width="400" height="500"></canvas>
     <div id="SportCardsCustomizerFieldsContainer">
@@ -27,8 +35,11 @@
         <div class="FieldContainer">
             <div class="FieldContainer__label">Отбор</div>
             <select id="club" class="FieldContainer__field">
-                <option value="barcelona">Barcelona</option>
-                <option value="cska-sofia">CSKA Sofia</option>
+                <?php
+                    foreach ($results as $club) {
+                        echo "<option value='" . $club->Image ."'>" . $club->Name . "</option>";
+                    }
+                ?>
             </select>
         </div>
         <div class="FieldContainer">
