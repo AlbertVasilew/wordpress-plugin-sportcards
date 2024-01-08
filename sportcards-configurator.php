@@ -33,10 +33,7 @@
         </div>
         <div class="FieldContainer">
             <div class="FieldContainer__label">Държава</div>
-            <select id="country" class="FieldContainer__field">
-                <option value="bg">Bulgaria</option>
-                <option value="ar">Armenia</option>
-            </select>
+            <select id="country" class="FieldContainer__field"></select>
         </div>
         <div class="FieldContainer">
             <div class="FieldContainer__label">Рейтинг</div>

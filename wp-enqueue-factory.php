@@ -16,7 +16,6 @@
     wp_localize_script('sportcards-configurator-script', 'php_vars', array(
         'cards' => plugins_url('/assets/cards/', __FILE__),
         'clubs' => plugins_url('/assets/clubs/', __FILE__),
-        'countries' => plugins_url('/assets/countries/', __FILE__),
         'ajax_url' => admin_url( 'admin-ajax.php' )
     ));
 ?>

@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll(".CardImage").forEach(thumbnail =>
         thumbnail.addEventListener('click', () => updateVisualization(thumbnail.src)));
 
+    //Draw contry flags
+    const countrySelect = jQuery("#country");
+
+    fetch("https://flagcdn.com/en/codes.json").then(response => response.json()).then(countries => {
+        for (let key in countries)
+            countrySelect.append(`<option value="${key}">${countries[key]}</option>`)
+    });
+
 
 
     let cropper;
@@ -112,9 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
             playerCard.setClubLogo(php_vars.clubs +
                 `${document.getElementById('club').value}.png`);
 
-            playerCard.setCountryFlag(php_vars.countries +
-                `${document.getElementById('country').value}.png`);
-
+            playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
             playerCard.setMaterial(document.getElementById('material').value);
             playerCard.setSize(document.getElementById('size').value);
             playerCard.setColor(document.getElementById('selectedColor').value);
