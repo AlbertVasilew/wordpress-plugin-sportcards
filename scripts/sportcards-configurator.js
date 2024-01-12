@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById("myCanvas");
     const context = canvas.getContext("2d");
-    const playerCard = new PlayerCard(context, "black");
+    const playerCard = new PlayerCard(canvas, context, "black");
     const priceCalculator = new PriceCalculator();
 
     const cropperManager = new CropperManager(
@@ -55,16 +55,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const updateCard = cardImageUrl => {
         context.clearRect(0, 0, canvas.width, canvas.height);
+        const cardImage = playerCard.getCardImage();
 
-        const cardImage = new Image();
-        cardImage.src = cardImageUrl ?
-            cardImageUrl : dependencies.cards + `card-design-1.png`;
+        if (cardImage.src)
+            playerCard.setCardImage(cardImageUrl ?? cardImage.src);
+        else
+            playerCard.setCardImage(dependencies.cards + `card-design-1.png`);
 
         cardImage.onload = () => {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);
 
             playerCard.setClubLogo(document.getElementById('club').value);
-
             playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
             playerCard.setMaterial(document.getElementById('material').value);
             playerCard.setSize(document.getElementById('size').value);

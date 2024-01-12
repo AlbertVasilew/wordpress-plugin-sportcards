@@ -1,21 +1,11 @@
 class PlayerCard {
-    constructor(ctx, color) {
-        this.ctx = ctx;
+    constructor(canvas, context, color) {
+        this.canvas = canvas;
+        this.ctx = context;
         this.color = color;
+        this.cardImage = new Image();
         this.clubLogo = new Image();
         this.countryFlag = new Image();
-        
-        this.material = null;
-        this.size = null;
-        this.rating = null;
-        this.position = null;
-        this.name = null;
-        this.pac = null;
-        this.sho = null;
-        this.pas = null;
-        this.dri = null;
-        this.def = null;
-        this.phy = null;
     }
 
     setMaterial(value) {
@@ -28,6 +18,10 @@ class PlayerCard {
 
     setColor(value) {
         this.color = value;
+    }
+
+    setCardImage(value) {
+        this.cardImage.src = value;
     }
 
     setClubLogo(value) {
@@ -135,6 +129,10 @@ class PlayerCard {
         this.ctx.fillText(value, 210, 400);
 
         this.phy = value;
+    }
+
+    getCardImage() {
+        return this.cardImage;
     }
 
     getCardData() {
