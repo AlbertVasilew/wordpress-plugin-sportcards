@@ -5,6 +5,7 @@
 
     wp_enqueue_script('player-card-js', plugin_dir_url(__FILE__) . 'scripts/player-card.js');
     wp_enqueue_script('price-calculator-js', plugin_dir_url(__FILE__) . 'scripts/price-calculator.js');
+    wp_enqueue_script('cropper-manager-js', plugin_dir_url(__FILE__) . 'scripts/cropper-manager.js');
     wp_enqueue_script('cropper-js', 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js', array('jquery'), '2.0.0', true);
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js');
     wp_enqueue_script('sportcards-configurator-js', plugin_dir_url(__FILE__) . 'scripts/sportcards-configurator.js');

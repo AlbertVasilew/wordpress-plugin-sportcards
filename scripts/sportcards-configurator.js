@@ -1,18 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
-    var playerCard = new PlayerCard(context, "black");
-    var priceCalculator = new PriceCalculator();
+    const canvas = document.getElementById("myCanvas");
+    const context = canvas.getContext("2d");
+    const playerCard = new PlayerCard(context, "black");
+    const priceCalculator = new PriceCalculator();
 
+    const cropperManager = new CropperManager(
+        document.getElementById('image-modal'), document.getElementById('cropped-image'), context);
 
+    jQuery("#SportCardsCustomizerFieldsContainer").on("change", () => updateVisualization());
+    jQuery(".CardImage").on("click", event => updateVisualization(jQuery(event.currentTarget).attr("src")));
+    jQuery("#image-input").on("change", event => cropperManager.open(event.target.files[0]));
+    jQuery("#modal-close").on("click", () => cropperManager.close());
 
-    document.getElementById("SportCardsCustomizerFieldsContainer")
-        .addEventListener("change", event => updateVisualization());
+    jQuery("#addToCartBtn").on("click", () => {
+        jQuery.ajax({
+            url: dependencies.ajax_url,
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                action: 'generate_user_sportcard',
+                card_data: playerCard.getCardData(),
+                image_data: cropperManager.getImageData()
+            },
+            success: response => window.location.href = response.redirect_url
+        });
+    });
 
-    document.querySelectorAll(".CardImage").forEach(thumbnail =>
-        thumbnail.addEventListener('click', () => updateVisualization(thumbnail.src)));
-
-    //Draw contry flags
     const countrySelect = jQuery("#country");
 
     fetch("https://flagcdn.com/en/codes.json").then(response => response.json()).then(countries => {
@@ -20,43 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
             countrySelect.append(`<option value="${key}">${countries[key]}</option>`)
     });
 
-
-
-    let cropper;
-
-    const openModal = () => {
-        document.getElementById('image-modal').style.display = 'block';
-        cropper = new Cropper(document.getElementById('cropped-image'), {aspectRatio: 1, viewMode: 1});
-    }
-
-    const closeModal = () => {
-        document.getElementById('image-modal').style.display = 'none';
-    }
-
-    document.getElementById('image-input').addEventListener('change', event => {
-        const reader = new FileReader();
-
-        reader.onload = () => {
-            document.getElementById('cropped-image').src = reader.result;
-            openModal();
-        };
-
-        reader.readAsDataURL(event.target.files[0]);
-    });
-
-    document.getElementById('modal-close').addEventListener('click', () => {
-        const img = new Image();
-
-        img.src = cropper.getCroppedCanvas().toDataURL();
-        img.onload = () => context.drawImage(img, 165, 90, 180, 180);
-
-        closeModal();
-    });
-
     const updatePrice = () => {
         const material = document.getElementById('material');
         const size = document.getElementById('size');
-
         const sizes = Array.from(size.options);
 
         sizes.forEach(size => {
@@ -72,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateVisualization = cardImageUrl => {
         updateCard(cardImageUrl);
         updatePrice();
-
     }
 
     const updateCard = cardImageUrl => {
@@ -104,20 +82,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     updateVisualization();
-
-    jQuery("#addToCartBtn").on("click", () => {
-        jQuery.ajax({
-            url: dependencies.ajax_url,
-            type: 'POST',
-            dataType: 'JSON',
-            data: {
-                action: 'generate_user_sportcard',
-                card_data: playerCard.getCardData(),
-                image_data: cropper?.getCroppedCanvas().toDataURL()
-            },
-            success: function(response) {
-                window.location.href = response.redirect_url;
-            }
-        });
-    })
 });
