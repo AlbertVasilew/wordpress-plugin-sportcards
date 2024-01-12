@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var playerCard = new PlayerCard(context, "black");
     var priceCalculator = new PriceCalculator();
 
+
+
     document.getElementById("SportCardsCustomizerFieldsContainer")
         .addEventListener("change", event => updateVisualization());
 
@@ -17,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let key in countries)
             countrySelect.append(`<option value="${key}">${countries[key]}</option>`)
     });
+
+
 
     let cropper;
 
@@ -49,60 +53,26 @@ document.addEventListener('DOMContentLoaded', function () {
         closeModal();
     });
 
-
-
-    
-    const calculateMaterialAndSizePrice = () => {
+    const updatePrice = () => {
         const material = document.getElementById('material');
         const size = document.getElementById('size');
-        const sizeValue = size.value;
 
-        const createOption = (select, optionValue, optionText) => {
-            const newOption = document.createElement("option");
-            newOption.value = optionValue;
-            newOption.text = optionText;
+        const sizes = Array.from(size.options);
 
-            select.appendChild(newOption);
-        };
+        sizes.forEach(size => {
+            const price = priceCalculator.calculatePrice(size.value, material.value);
+            const baseText = size.text.replace(/\s?\([^)]+\)/g, '');
+            size.text = `${baseText} (${price} ${priceCalculator.getCurrency()})`;
+        });
 
-        const setPriceBasedOnSize = (value) => {
-            switch (value) {
-                case 'small':
-                    return material.value === 'pvc' ? 40 : 60;
-                case 'medium':
-                    return material.value === 'pvc' ? 50 : 80;
-                case 'large':
-                    return material.value === 'pvc' ? 65 : 85;
-            }
-        };
-
-        const updateOptionsAndPrice = () => {
-            const materialType = material.value;
-
-            Array.from(size.options).forEach(option => option.remove());
-
-            const sizesData = {
-                'pvc': ['small', 'Малък - 24x15 (40 лв)', 'medium', 'Среден - 30x19 (50 лв)', 'large', 'Голям - 40x25 (65 лв)'],
-                'metal': ['small', 'Малък - 24x15 (60 лв)', 'medium', 'Среден - 30x19 (80 лв)', 'large', 'Голям - 40x25 (85 лв)'],
-            };
-
-            for (let i = 0; i < sizesData[materialType].length; i += 2) {
-                createOption(size, sizesData[materialType][i], sizesData[materialType][i + 1]);
-            }
-
-            size.value = sizeValue;
-            priceCalculator.setPrice(setPriceBasedOnSize(size.value));
-        };
-
-        updateOptionsAndPrice();
+        priceCalculator.setPrice(size.value, material.value);
+        document.getElementById('PriceContainer__price').innerText = priceCalculator.getPrice();
     };
-
-    const setPrice = price => document.getElementById('PriceContainer__price').innerText = `${price} лв.`;
 
     const updateVisualization = cardImageUrl => {
         updateCard(cardImageUrl);
-        calculateMaterialAndSizePrice();
-        setPrice(priceCalculator.getPrice());
+        updatePrice();
+
     }
 
     const updateCard = cardImageUrl => {
