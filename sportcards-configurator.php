@@ -24,14 +24,12 @@
                 <option value="large">Голям - 40x25</option>
             </select>
         </div>
+
         <div class="FieldContainer">
-            <div class="FieldContainer__label">Позиция</div>
-            <select id="position" class="FieldContainer__field">
-                <option value="GK">GK</option>
-                <option value="LB">LB</option>
-                <option value="LWB">LWB</option>
-            </select>
+            <div class="FieldContainer__label">Име</div>
+            <input type="text" id="name" class="FieldContainer__field"/>
         </div>
+        
         <div class="FieldContainer">
             <div class="FieldContainer__label">Отбор</div>
             <select id="club" class="FieldContainer__field">
@@ -42,42 +40,56 @@
                 ?>
             </select>
         </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">Държава</div>
-            <select id="country" class="FieldContainer__field"></select>
+        <div class="skills-inputs-container" style="display: flex;">
+            <div class="stat-inputs-container">
+                <div class="stat-input-container">
+                    <label>PAC</label>
+                    <input type="number" min="0" max="99" id="pac" value="99" class="stat-input">
+                </div>
+                <div class="stat-input-container">
+                    <label>SHO</label>
+                    <input type="number" min="0" max="99" id="sho" value="99" class="stat-input">
+                </div>
+                <div class="stat-input-container">
+                    <label>PAS</label>
+                    <input type="number" min="0" max="99" id="pas" value="99" class="stat-input">
+                </div>
+            </div>
+            <div class="stat-inputs-container">
+                <div class="stat-input-container">
+                    <label>DRI</label>
+                    <input type="number" min="0" max="99" id="dri" value="99" class="stat-input">
+                </div>
+                <div class="stat-input-container">
+                    <label>DEF</label>
+                    <input type="number" min="0" max="99" id="def" value="99" class="stat-input">
+                </div>
+                <div class="stat-input-container">
+                    <label>PHY</label>
+                    <input type="number" min="0" max="99" id="phy" value="99" class="stat-input">
+                </div>
+            </div>
         </div>
+
         <div class="FieldContainer">
             <div class="FieldContainer__label">Рейтинг</div>
             <input type="text" id="rating" class="FieldContainer__field"/>
         </div>
+
         <div class="FieldContainer">
-            <div class="FieldContainer__label">Име</div>
-            <input type="text" id="name" class="FieldContainer__field"/>
+            <div class="FieldContainer__label">Позиция</div>
+            <select id="position" class="FieldContainer__field">
+                <option value="GK">GK</option>
+                <option value="LB">LB</option>
+                <option value="LWB">LWB</option>
+            </select>
         </div>
+
         <div class="FieldContainer">
-            <div class="FieldContainer__label">PAC</div>
-            <input type="text" id="pac" class="FieldContainer__field"/>
+            <div class="FieldContainer__label">Държава</div>
+            <select id="country" class="FieldContainer__field"></select>
         </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">SHO</div>
-            <input type="text" id="sho" class="FieldContainer__field"/>
-        </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">PAS</div>
-            <input type="text" id="pas" class="FieldContainer__field"/>
-        </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">DRI</div>
-            <input type="text" id="dri" class="FieldContainer__field"/>
-        </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">DEF</div>
-            <input type="text" id="def" class="FieldContainer__field"/>
-        </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">PHY</div>
-            <input type="text" id="phy" class="FieldContainer__field"/>
-        </div>
+
         <div class="FieldContainer">
             <div class="FieldContainer__label">Дизайн</div>
             <div class="FieldContainer__field--cards">
@@ -90,26 +102,32 @@
                     $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
                     if (in_array($extension, $allowedExtensions)) {
                         $imageUrl = plugins_url('/assets/cards/', __FILE__) . $file;
-                        echo '<img class="CardImage" src="' . $imageUrl . '" alt="' . $file . '">';
+                        echo '<img loading="lazy" class="CardImage" src="' . $imageUrl . '" alt="' . $file . '">';
                     }
                 }
             ?>
             </div>
         </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">Цвят на текста</div>
-            <input type="color" id="selectedColor" class="FieldContainer__field" value="#ffffff">
-        </div>
-        <div class="FieldContainer">
-            <div class="FieldContainer__label">Снимка на футболист</div>
 
-            <input type="file" id="image-input" accept="image/*">
-            
-            <div id="image-modal">
-                <img id="cropped-image" src="#" alt="Cropped Image">
-                <div id="modal-close">Приложи</div>
+        <div class="price-color-picker">
+            <div class="image-input-wrap">
+                <label id="image-input-label" for="image-input">
+                    Изберете снимка
+                    <input id="image-input" type="file" accept="image/*" name="player-image-input" style="display: none;">
+                </label>
+                
+                <div id="image-modal">
+                    <img id="cropped-image" src="#" alt="Cropped Image">
+                    <div id="modal-close">Приложи</div>
+                </div>
+            </div>
+    
+            <div class="color-input-wrap">
+                <div class="">Цвят на текста</div>
+                <input type="color" id="selectedColor" class="FieldContainer__field" value="#ffffff">
             </div>
         </div>
+        
         <div id="PriceContainer">
             Крайна цена:
             <div id="PriceContainer__price"></div>

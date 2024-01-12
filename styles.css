@@ -2,44 +2,47 @@
     display: flex;
     flex-direction: row;
     min-width: 100%;
-    background-color: #eee;
-    align-items: center;
     padding: 20px;
     border-radius: 10px;
+    align-items: flex-start;
+    background-color: transparent;
 }
 
 #myCanvas {
-    background-color: #ddd;
     border-radius: 10px;
 }
 
 #SportCardsCustomizerFieldsContainer {
     margin-left: 20px;
-    width: 70%;
 }
 
 .FieldContainer {
     display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 5px 0px;
 }
 
 .FieldContainer__label {
-    width: 30% !important;
+    width: 100% !important;
 }
 
-.FieldContainer__field, .FieldContainer__field--cards {
-    width: 70% !important;
+.FieldContainer__field {
+    width: 100% !important;
     padding: 5px;
 }
 
 .FieldContainer__field--cards {
     display: flex;
     overflow: auto;
+    flex-wrap: wrap;
+    height: 140px;
+    width: 300px;
 }
 
 .CardImage {
-    width: 50px;
+    width: 60px;
+    cursor: pointer;
     margin: 5px;
 }
 
@@ -101,12 +104,19 @@
     #cropped-image {
         max-width: 100%;
     }
+
+    #SportCardsCustomizerWrapper {
+        flex-direction: column;
+    }
+
+    .FieldContainer__field--cards {
+        width: 270px;
+    }
+
+    #myCanvas {
+        max-width: -webkit-fill-available;
+    }
 }
-
-
-
-
-
 
 .SectionContainer {
     margin: 30px 0px;
@@ -193,3 +203,54 @@
     float: right;
     cursor: pointer;
 }
+
+.skills-inputs-container {
+    display: flex;
+}
+
+.FieldContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .FieldContainer__field {
+    max-width: 300px;
+  }
+
+  .price-color-picker {
+    display: flex;
+    align-items: center;
+  }
+
+  #selectedColor {
+    border: 1px solid;
+  }
+
+  #image-input-label {
+    font-size: 18px;
+    font-weight: 400;
+    border: 1px solid;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 100px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .stat-inputs-container:first-of-type {
+    margin-right: 20px;
+  }
+
+  .stat-input-container input {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-input-wrap {
+    width: auto;
+  }
+
+  .color-input-wrap {
+    margin-left: 25px;
+  }
