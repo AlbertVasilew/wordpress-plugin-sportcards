@@ -1,4 +1,41 @@
 <?php
+    function save_club_callback() {
+        global $wpdb;
+
+        $table_name = $wpdb->prefix . 'sportcards_clubs';
+
+        $club_name = sanitize_text_field($_POST['clubName']);
+
+        $uploaded_image = $_FILES['clubImage'];
+        $file_name = uniqid() . '_' . basename($uploaded_image['name']);
+        $dest_path = plugin_dir_path(__FILE__) . 'assets/clubs/' . $file_name;
+
+        if (move_uploaded_file($uploaded_image['tmp_name'], $dest_path)) {
+            $image_url = plugins_url('assets/clubs/' . $file_name, __FILE__);
+
+            $wpdb->insert(
+                $table_name,
+                array(
+                    'Name'  => $club_name,
+                    'Image' => $image_url,
+                ),
+                array('%s', '%s')
+            );
+        }
+
+        die();
+    }
+
+    function plugin_settings_link($links) {
+        $settings_link = '<a href="admin.php?page=sportcards-settings">Settings</a>';
+        array_unshift($links, $settings_link);
+        return $links;
+    }
+
+    function your_plugin_add_menu() {
+        add_submenu_page(null, null, null, 'manage_options', 'sportcards-settings', 'your_plugin_settings_page');
+    }
+
     function your_plugin_settings_page() {
         global $wpdb;
 

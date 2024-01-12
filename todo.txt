@@ -1,17 +1,9 @@
-V 1. Color picker
-V 2. Fields for customizing
-V 3. Flag change
-V 4. Country flag change
-V 5. Upload custom image in canvas for player area
-V 6. Cards change
----
-7. Advanced pricing and applying into cart
-8. Fix card design changing
-V 9. Add to cart with custom data
-10. Redesign using bootstrap
-11. Upload all cards/clubs images
-12. Да се махне линка към снимката от количка
-13. Меню за добавяне на:
-- Нови снимки на картите и премахване
+0. Refactoring - 1.5h
+1. Advanced pricing and applying into cart - 0.5h
+2. Fix card design changing - 0.5h
+3. Да се махне линка към снимката от количка - 0.5h
+4. Settings:
+- Клубове
+- Карти
 - Смяна на ID на продукт динамично
 - Сетване на цени

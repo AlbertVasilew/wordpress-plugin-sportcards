@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const cardImage = new Image();
         cardImage.src = cardImageUrl ?
-            cardImageUrl : php_vars.cards + `card-design-1.png`;
+            cardImageUrl : dependencies.cards + `card-design-1.png`;
 
         cardImage.onload = () => {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);
@@ -137,13 +137,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     jQuery("#addToCartBtn").on("click", () => {
         jQuery.ajax({
-            url: php_vars.ajax_url,
+            url: dependencies.ajax_url,
             type: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'add_to_cart',
+                action: 'generate_user_sportcard',
                 card_data: playerCard.getCardData(),
-                imageData: cropper?.getCroppedCanvas().toDataURL()
+                image_data: cropper?.getCroppedCanvas().toDataURL()
             },
             success: function(response) {
                 window.location.href = response.redirect_url;
