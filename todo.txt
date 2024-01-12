@@ -1,6 +1,6 @@
-0. Refactoring - 1.5h
+V 0. Refactoring - 1.5h
 1. Advanced pricing and applying into cart - 0.5h
-2. Fix card design changing - 0.5h
+V 2. Fix card design changing - 0.5h
 3. Да се махне линка към снимката от количка - 0.5h
 4. Settings:
 - Клубове
