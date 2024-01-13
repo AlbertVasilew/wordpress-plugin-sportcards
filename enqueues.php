@@ -20,4 +20,9 @@
         wp_localize_script('sportcards-configurator-js', 'dependencies', $localization_data);
         wp_localize_script('price-calculator-js', 'dependencies', $localization_data);
     }
+
+    function enqueue_scripts_admin() {
+        wp_enqueue_style('sportcards-admin-css', plugin_dir_url(__FILE__) . 'admin/styles.css');
+        wp_enqueue_script('script-js', plugin_dir_url(__FILE__) . 'admin/scripts/script.js');
+    }
 ?>
