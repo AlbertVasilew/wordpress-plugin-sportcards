@@ -51,9 +51,9 @@
         <div class="modal" id="cardModal">
             <div class="modal-content" style="width: 200px;">
                 <h2>Add New Card</h2>
-                <form id="cardForm">
-                    <label for="cardImage">Card Image:</label>
-                    <input type="file" id="cardImage" name="cardImage" accept="image/*" required>
+                <form id="cardForm" enctype="multipart/form-data">
+                    <label for="cardImages">Card Images:</label>
+                    <input type="file" id="cardImages" name="cardImages[]" accept="image/*" multiple required>
 
                     <button type="button" id="saveCard">Save</button>
                 </form>

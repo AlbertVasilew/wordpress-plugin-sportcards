@@ -28,19 +28,21 @@
 
     function save_card() {
         global $wpdb;
+        $uploaded_images = $_FILES['cardImages'];
         
-        $uploaded_image = $_FILES['cardImage'];
-        $file_name = uniqid() . '_' . basename($uploaded_image['name']);
-        $dest_path = plugin_dir_path(dirname(__FILE__)) . 'assets/cards/' . $file_name;
-
-        if (move_uploaded_file($uploaded_image['tmp_name'], $dest_path)) {
-            $wpdb->insert(
-                $wpdb->prefix . 'sportcards_cards',
-                array('Image' => plugin_dir_url(dirname(__FILE__)) . 'assets/cards/' . $file_name),
-                array('%s', '%s')
-            );
+        foreach ($uploaded_images['name'] as $key => $value) {
+            $file_name = uniqid() . '_' . basename($uploaded_images['name'][$key]);
+            $dest_path = plugin_dir_path(dirname(__FILE__)) . 'assets/cards/' . $file_name;
+    
+            if (move_uploaded_file($uploaded_images['tmp_name'][$key], $dest_path)) {
+                $wpdb->insert(
+                    $wpdb->prefix . 'sportcards_cards',
+                    array('Image' => plugin_dir_url(dirname(__FILE__)) . 'assets/cards/' . $file_name),
+                    array('%s')
+                );
+            }
         }
-
+    
         die();
     }
 

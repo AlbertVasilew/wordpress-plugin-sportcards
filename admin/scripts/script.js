@@ -43,16 +43,18 @@ jQuery(document).ready(() => {
     })
 
     jQuery('#saveCard').on('click', () => {
-        const cardImage = jQuery('#cardImage').prop('files')[0];
+        const cardImages = jQuery('#cardImages').prop('files');
 
-        if (!cardImage) {
-            alert('Please select an image.');
+        if (cardImages?.length === 0) {
+            alert('Please select one or more images.');
             return;
         }
     
         var formData = new FormData();
         formData.append('action', 'save_card');
-        formData.append('cardImage', cardImage);
+        
+        for (let i = 0; i < cardImages.length; i++)
+            formData.append('cardImages[]', cardImages[i]);
     
         jQuery.ajax({
             url: ajaxurl,
@@ -62,7 +64,7 @@ jQuery(document).ready(() => {
             contentType: false,
             success: () => location.reload()
         });
-    })
+    });
 
     var modal = document.getElementById('clubModal');
     var addNewClubBtn = document.getElementById('addNewClubBtn');
