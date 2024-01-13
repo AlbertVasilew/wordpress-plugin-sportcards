@@ -1,7 +1,7 @@
 class PriceCalculator {
     constructor() {
         this.price = 0;
-        this.currency = "лева";
+        this.currency = dependencies.currency;
         
         this.priceConfig = [
             {size: "small", material: "pvc", price: 40},
@@ -16,7 +16,9 @@ class PriceCalculator {
     calculatePrice = (size, material) => this.priceConfig.find(
         item => item.size === size && item.material === material)?.price;
 
+    getPrice = () => this.price;
+    getPriceWithCurrency = () => `${this.price} ${this.currency}`;
     getCurrency = () => this.currency;
-    getPrice = () => `${this.price} ${this.currency}`;
+    
     setPrice = (size, material) => this.price = this.calculatePrice(size, material);
 }

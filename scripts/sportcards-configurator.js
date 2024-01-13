@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {
                 action: 'generate_user_sportcard',
                 card_data: playerCard.getCardData(),
-                image_data: cropperManager.getImageData()
+                image_data: cropperManager.getImageData(),
+                price: priceCalculator.getPrice()
             },
             success: response => window.location.href = response.redirect_url
         });
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         priceCalculator.setPrice(size.value, material.value);
-        document.getElementById('PriceContainer__price').innerText = priceCalculator.getPrice();
+        document.getElementById('PriceContainer__price').innerText = priceCalculator.getPriceWithCurrency();
     };
 
     const updateVisualization = cardImageUrl => {

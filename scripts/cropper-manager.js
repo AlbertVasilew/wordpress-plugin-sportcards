@@ -28,5 +28,5 @@ class CropperManager {
         this.modal.style.display = "none";
     }
 
-    getImageData = () => this.cropper.getCroppedCanvas().toDataURL();
+    getImageData = () => this.cropper?.getCroppedCanvas().toDataURL();
 }

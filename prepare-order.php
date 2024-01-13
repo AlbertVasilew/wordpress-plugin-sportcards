@@ -1,14 +1,41 @@
 <?php
     function add_sportcard_data_in_cart($item_data, $cart_item) {
-        foreach ($cart_item['card_data'] as $key => $value)
-            $item_data[] = array('key' => $key, 'value' => $value);
+        if (isset($cart_item['card_data'])) {
+            foreach ($cart_item['card_data'] as $key => $value) {
+                if ($key != 'price')
+                    $item_data[] = array('key' => $key, 'value' => $value);
+            }
+        }
 
         return $item_data;
     }
 
     function add_sportcard_data_in_order($item, $cart_item_key, $cart_item, $order) {
-        foreach ($cart_item['card_data'] as $key => $value)
-            $item->update_meta_data($key, $value);
+        if (isset($cart_item['card_data'])) {
+            foreach ($cart_item['card_data'] as $key => $value) {
+                if ($key != 'price')
+                    $item->update_meta_data($key, $value);
+            }
+        }
+    }
+
+    function add_sportcard_to_cart($image_path)
+    {
+        $card_data = $_POST["card_data"];
+
+        $cart_item_key = WC()->cart->add_to_cart(14, 1, 0, array(), array('card_data' => array(
+            'Материал' => $card_data['material'],
+            'Позиция' => $card_data['position'],
+            'Снимка' => $image_path,
+            'price' => $_POST["price"]
+        )));
+    }
+
+    function set_sportcard_price($cart_object) {
+        foreach ($cart_object->get_cart() as $cart_item_key => $cart_item) {
+            if (isset($cart_item['card_data']['price']))
+                $cart_item['data']->set_price(floatval($cart_item['card_data']['price']));
+        }
     }
 
     function upload_player_image() {
@@ -29,16 +56,5 @@
 
         wp_send_json(array('redirect_url' => wc_get_cart_url()));
         exit;
-    }
-
-    function add_sportcard_to_cart($image_path)
-    {
-        $card_data = $_POST["card_data"];
-
-        $cart_item_key = WC()->cart->add_to_cart(14, 1, 0, array(), array('card_data' => array(
-            'Материал' => $card_data['material'],
-            'Позиция' => $card_data['position'],
-            'Снимка' => $image_path
-        )));
     }
 ?>
