@@ -1,9 +1,12 @@
 <?php
     global $wpdb;
     $table_name = $wpdb->prefix . 'sportcards_clubs';
+    $cards_table = $wpdb->prefix . 'sportcards_cards';
 
     $query = "SELECT * FROM $table_name";
     $results = $wpdb->get_results($query);
+
+    $cards = $wpdb->get_results("SELECT * FROM $cards_table");
 ?>
 
 <div id="SportCardsCustomizerWrapper">
@@ -94,17 +97,8 @@
             <div class="FieldContainer__label">Дизайн</div>
             <div class="FieldContainer__field--cards">
             <?php
-                $imageFolder = plugin_dir_path(__FILE__) . 'assets/cards';
-                $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
-                $files = scandir($imageFolder);
-
-                foreach ($files as $file) {
-                    $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-                    if (in_array($extension, $allowedExtensions)) {
-                        $imageUrl = plugins_url('/assets/cards/', __FILE__) . $file;
-                        echo '<img loading="lazy" class="CardImage" src="' . $imageUrl . '" alt="' . $file . '">';
-                    }
-                }
+                foreach ($cards as $card)
+                    echo '<img loading="lazy" class="CardImage" src="' . $card->Image . '" alt="' . $card->Image . '">';
             ?>
             </div>
         </div>

@@ -5,7 +5,9 @@
     add_action('wp_ajax_generate_user_sportcard', 'generate_user_sportcard');
     add_action('wp_ajax_nopriv_generate_user_sportcard', 'generate_user_sportcard');
     add_action('wp_ajax_save_club', 'save_club');
+    add_action('wp_ajax_save_card', 'save_card');
     add_action('wp_ajax_delete_club', 'delete_club');
+    add_action('wp_ajax_delete_card', 'delete_card');
     add_action('wp_enqueue_scripts', 'enqueue_scripts');
     add_action('admin_enqueue_scripts', 'enqueue_scripts_admin');
     

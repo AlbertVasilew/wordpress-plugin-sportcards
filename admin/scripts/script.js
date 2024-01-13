@@ -38,8 +38,33 @@ jQuery(document).ready(() => {
         });
     })
 
+    jQuery('#saveCard').on('click', () => {
+        const cardImage = jQuery('#cardImage').prop('files')[0];
+
+        if (!cardImage) {
+            alert('Please select an image.');
+            return;
+        }
+    
+        var formData = new FormData();
+        formData.append('action', 'save_card');
+        formData.append('cardImage', cardImage);
+    
+        jQuery.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: () => location.reload()
+        });
+    })
+
     var modal = document.getElementById('clubModal');
     var addNewClubBtn = document.getElementById('addNewClubBtn');
+
+    var cardModal = jQuery('#cardModal');
+    jQuery('#addNewCardBtn').on('click', () => cardModal.css('display', 'block'));
     
     addNewClubBtn.onclick = function () {
         modal.style.display = 'block';
@@ -47,7 +72,10 @@ jQuery(document).ready(() => {
     
     window.onclick = function (event) {
         if (event.target === modal) {
-            closeModal();
+            modal.style.display = 'none';
+        }
+        if (event.target === cardModal) {
+            cardModal.css('display', 'none');
         }
     };
 });
