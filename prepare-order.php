@@ -25,7 +25,20 @@
 
         $cart_item_key = WC()->cart->add_to_cart(14, 1, 0, array(), array('card_data' => array(
             'Материал' => $card_data['material'],
+            'Размер' => $card_data['size'],
+            'Цвят' => $card_data['color'],
+            'Рейтинг' => $card_data['rating'],
             'Позиция' => $card_data['position'],
+            'Име' => $card_data['name'],
+            'PAC' => $card_data['pac'],
+            'SHO' => $card_data['sho'],
+            'PAS' => $card_data['pas'],
+            'DEF' => $card_data['def'],
+            'DRI' => $card_data['dri'],
+            'PHY' => $card_data['phy'],
+            'Дизайн' => $card_data['cardImageUrl'],
+            'Държава' => $card_data['countryFlagUrl'],
+            'Отбор' => $card_data['clubLogoUrl'],
             'Снимка' => $image_path,
             'price' => $_POST["price"]
         )));

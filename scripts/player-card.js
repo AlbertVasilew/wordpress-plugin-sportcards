@@ -136,12 +136,23 @@ class PlayerCard {
     }
 
     getCardData() {
+        console.log(this.cardImage);
         return {
             material: this.material,
             size: this.size,
+            color: this.color,
             rating: this.rating,
             position: this.position,
-            name: this.name
+            name: this.name,
+            pac: this.pac,
+            sho: this.sho,
+            pas: this.pas,
+            def: this.def,
+            dri: this.dri,
+            phy: this.phy,
+            cardImageUrl: this.cardImage.src,
+            countryFlagUrl: this.countryFlag.src,
+            clubLogoUrl: this.clubLogo.src
         }
     }
 }
