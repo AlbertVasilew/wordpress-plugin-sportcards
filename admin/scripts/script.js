@@ -1,13 +1,17 @@
 jQuery(document).ready(() => {
     jQuery('.ItemContainer__item-delete').click(function () {
         if (confirm('Are you sure you want to delete this record?')) {
+            const clubId = jQuery(this).data('club-id');
+            const cardId = jQuery(this).data('card-id');
+            const type = cardId ? "card" : "club";
+
             jQuery.ajax({
                 url: ajaxurl,
                 type: 'POST',
                 dataType: 'JSON',
                 data: {
-                    action: 'delete_club',
-                    club_id: jQuery(this).data('club-id')
+                    action: type == 'card' ? 'delete_card' : 'delete_club',
+                    id: type === 'card' ? cardId : clubId
                 },
                 success: () => location.reload()
             });

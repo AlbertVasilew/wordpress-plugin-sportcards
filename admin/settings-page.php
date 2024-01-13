@@ -1,11 +1,9 @@
 <?php
     global $wpdb;
-    $table_name = $wpdb->prefix . 'sportcards_clubs';
+    $clubs_table = $wpdb->prefix . 'sportcards_clubs';
     $cards_table = $wpdb->prefix . 'sportcards_cards';
 
-    $query = "SELECT * FROM $table_name";
-    $results = $wpdb->get_results($query);
-
+    $clubs = $wpdb->get_results("SELECT * FROM $clubs_table");
     $cards = $wpdb->get_results("SELECT * FROM $cards_table");
 ?>
 
@@ -32,7 +30,7 @@
         </div>
         <div class="SectionContainerItems">
             <?php
-                foreach ($results as $club) {
+                foreach ($clubs as $club) {
                     $id = $club->Id;
                     $name = $club->Name;
                     $image = $club->Image;
@@ -73,7 +71,7 @@
                     ?>
                     <div class="ItemContainer">
                         <img class="ItemContainer__item-image" src="<?php echo $image ?>" alt="<?php echo $image ?>">
-                        <div class="ItemContainer__item-delete" data-club-id="<?php echo $id; ?>">Премахни</div>
+                        <div class="ItemContainer__item-delete" data-card-id="<?php echo $id; ?>">Премахни</div>
                     </div>
                     <?php
                 }

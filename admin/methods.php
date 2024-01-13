@@ -22,7 +22,7 @@
 
     function delete_club() {
         global $wpdb;
-        $wpdb->delete($wpdb->prefix . 'sportcards_clubs', array('Id' => intval($_POST['club_id'])));
+        $wpdb->delete($wpdb->prefix . 'sportcards_clubs', array('Id' => intval($_POST['id'])));
         die();
     }
 
@@ -46,7 +46,7 @@
 
     function delete_card() {
         global $wpdb;
-        $wpdb->delete($wpdb->prefix . 'sportcards_cards', array('Id' => intval($_POST['card_id'])));
+        $wpdb->delete($wpdb->prefix . 'sportcards_cards', array('Id' => intval($_POST['id'])));
         die();
     }
 ?>
