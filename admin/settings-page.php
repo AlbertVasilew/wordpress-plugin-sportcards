@@ -30,6 +30,9 @@
         </div>
         <div class="SectionContainerItems">
             <?php
+                if (!$clubs)
+                    echo "There are no added clubs yet";
+
                 foreach ($clubs as $club) {
                     $id = $club->Id;
                     $name = $club->Name;
@@ -65,6 +68,9 @@
         </div>
         <div class="SectionContainerItems">
             <?php
+                if (!$cards)
+                    echo "There are no added cards yet";
+
                 foreach ($cards as $card) {
                     $id = $card->Id;
                     $image = $card->Image;

@@ -5,6 +5,15 @@
 
     $clubs = $wpdb->get_results("SELECT * FROM $clubs_table");
     $cards = $wpdb->get_results("SELECT * FROM $cards_table");
+
+    if (!$cards || !$clubs) {
+        if (!current_user_can('manage_options'))
+            return;
+
+        echo 'You must configure the sportcards customizer at first.<br/>' .
+            '<a href="' . home_url('wp-admin/admin.php?page=sportcards-settings') . '" target="_blank">' .
+            'Go to Sportcards Customizer Settings</a>';
+    }
 ?>
 
 <div id="SportCardsCustomizerWrapper">
