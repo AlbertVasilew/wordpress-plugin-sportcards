@@ -47,7 +47,12 @@
                     ?>
                     <div class="ItemContainer">
                         <div class="ItemContainer__item-name"><?php echo $name; ?></div>
-                        <img class="ItemContainer__item-image" src="<?php echo $image ?>" alt="<?php echo $name ?>">
+                        <img
+                            loading="lazy"
+                            class="ItemContainer__item-image"
+                            src="<?php echo $image ?>"
+                            alt="<?php echo $name ?>"
+                        />
                         <div class="ItemContainer__item-delete" data-club-id="<?php echo $id; ?>">Премахни</div>
                     </div>
                     <?php
@@ -81,7 +86,12 @@
                     $image = $card->Image;
                     ?>
                     <div class="ItemContainer">
-                        <img class="ItemContainer__item-image" src="<?php echo $image ?>" alt="<?php echo $image ?>">
+                        <img 
+                            loading="lazy"
+                            class="ItemContainer__item-image"
+                            src="<?php echo $image ?>"
+                            alt="<?php echo $image ?>"
+                        />
                         <div class="ItemContainer__item-delete" data-card-id="<?php echo $id; ?>">Премахни</div>
                     </div>
                     <?php
