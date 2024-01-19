@@ -61,7 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (cardImage.src)
             playerCard.setCardImage(cardImageUrl ?? cardImage.src);
         else
-            playerCard.setCardImage(dependencies.cards + `card-design-1.png`);
+            playerCard.setCardImage(dependencies.default_card);
+
+        console.log(dependencies.cards);
 
         cardImage.onload = () => {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);

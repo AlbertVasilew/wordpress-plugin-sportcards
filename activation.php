@@ -23,5 +23,19 @@
                 PRIMARY KEY (Id)
             ) $charset_collate;");
         }
+
+        $assets_dir = plugin_dir_path( __FILE__ ) . 'assets';
+
+        $directories = array(
+            $assets_dir,
+            $assets_dir . '/clubs',
+            $assets_dir . '/cards',
+            $assets_dir . '/player-images'
+        );
+        
+        foreach ($directories as $directory) {
+            if (!file_exists($directory))
+                wp_mkdir_p($directory);
+        }
     }
 ?>

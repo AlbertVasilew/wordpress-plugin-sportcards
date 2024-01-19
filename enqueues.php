@@ -1,6 +1,12 @@
 <?php
+    global $wpdb;
+    $default_card_design = $wpdb->get_var("SELECT Image FROM {$wpdb->prefix}sportcards_cards LIMIT 1");
+
     function enqueue_scripts() {
+        global $default_card_design;
+
         $localization_data = array(
+            'default_card' => $default_card_design,
             'cards' => plugins_url('/assets/cards/', __FILE__),
             'ajax_url' => admin_url('admin-ajax.php'),
             'currency' => get_woocommerce_currency_symbol(),
