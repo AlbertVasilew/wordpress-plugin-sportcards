@@ -48,8 +48,11 @@
     }
 
     function create_system_product() {
+        global $wpdb;
+        
         $product_sku = 'sportcards-customizer-system-product';
-        $existing_product = wc_get_product_id_by_sku($product_sku);
+        $existing_product = $wpdb->get_var(
+            "SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value='$product_sku'");
 
         if (!$existing_product) {
             $product_id = wp_insert_post(array(

@@ -21,8 +21,11 @@
 
     function add_sportcard_to_cart($image_path)
     {
+        global $wpdb;
+        $product_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND " .
+            "meta_value='sportcards-customizer-system-product'");
+
         $card_data = $_POST["card_data"];
-        $product_id = wc_get_product_id_by_sku('sportcards-customizer-system-product');
 
         $cart_item_key = WC()->cart->add_to_cart($product_id, 1, 0, array(), array('card_data' => array(
             'Материал' => $card_data['material'],
