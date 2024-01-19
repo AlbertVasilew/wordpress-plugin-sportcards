@@ -13,14 +13,22 @@ document.addEventListener('DOMContentLoaded', function () {
     jQuery("#modal-close").on("click", () => cropperManager.close());
 
     jQuery("#addToCartBtn").on("click", () => {
+        const cardData = playerCard.getCardData();
+        const imageData = cropperManager.getImageData();
+        
+        if (Object.values(cardData).some(value => value === null || value === "") || !imageData) {
+            alert("Трябва да попълните всички полета");
+            return;
+        }
+
         jQuery.ajax({
             url: dependencies.ajax_url,
             type: 'POST',
             dataType: 'JSON',
             data: {
                 action: 'generate_user_sportcard',
-                card_data: playerCard.getCardData(),
-                image_data: cropperManager.getImageData(),
+                card_data: cardData,
+                image_data: imageData,
                 price: priceCalculator.getPrice()
             },
             success: response => window.location.href = response.redirect_url
