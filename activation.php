@@ -1,5 +1,11 @@
 <?php
     function sportcards_activate() {
+        create_tables();
+        create_directories();
+        create_system_product();
+    }
+    
+    function create_tables() {
         global $wpdb;
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
@@ -23,7 +29,9 @@
                 PRIMARY KEY (Id)
             ) $charset_collate;");
         }
+    }
 
+    function create_directories() {
         $assets_dir = plugin_dir_path( __FILE__ ) . 'assets';
 
         $directories = array(
@@ -36,6 +44,22 @@
         foreach ($directories as $directory) {
             if (!file_exists($directory))
                 wp_mkdir_p($directory);
+        }
+    }
+
+    function create_system_product() {
+        $product_sku = 'sportcards-customizer-system-product';
+        $existing_product = wc_get_product_id_by_sku($product_sku);
+
+        if (!$existing_product) {
+            $product_id = wp_insert_post(array(
+                'post_title' => 'Персонализирана карта', 'post_status' => 'publish', 'post_type' => 'product'));
+
+            wp_set_object_terms($product_id, 'simple', 'product_type');
+            update_post_meta($product_id, '_sku', $product_sku);
+            update_post_meta($product_id, '_visibility', 'hidden');
+            update_post_meta($product_id, '_price', '0');
+            update_post_meta($product_id, '_regular_price', '0');
         }
     }
 ?>

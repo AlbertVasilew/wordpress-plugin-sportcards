@@ -22,8 +22,9 @@
     function add_sportcard_to_cart($image_path)
     {
         $card_data = $_POST["card_data"];
+        $product_id = wc_get_product_id_by_sku('sportcards-customizer-system-product');
 
-        $cart_item_key = WC()->cart->add_to_cart(14, 1, 0, array(), array('card_data' => array(
+        $cart_item_key = WC()->cart->add_to_cart($product_id, 1, 0, array(), array('card_data' => array(
             'Материал' => $card_data['material'],
             'Размер' => $card_data['size'],
             'Цвят' => $card_data['color'],
