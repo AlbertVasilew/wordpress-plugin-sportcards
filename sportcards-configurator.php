@@ -1,16 +1,21 @@
 <?php
     global $wpdb;
+
     $clubs_table = $wpdb->prefix . 'sportcards_clubs';
     $cards_table = $wpdb->prefix . 'sportcards_cards';
+    $materials_table = $wpdb->prefix . 'sportcards_materials';
+    $sizes_table = $wpdb->prefix . 'sportcards_sizes';
 
     $clubs = $wpdb->get_results("SELECT * FROM $clubs_table");
     $cards = $wpdb->get_results("SELECT * FROM $cards_table");
+    $materials = $wpdb->get_results("SELECT * FROM $materials_table");
+    $sizes = $wpdb->get_results("SELECT * FROM $sizes_table");
 
     if (!$cards || !$clubs) {
         if (current_user_can('manage_options')) {
             echo 'You must configure the sportcards customizer at first.<br/>' .
                 '<a href="' . home_url('wp-admin/admin.php?page=sportcards-settings') . '" target="_blank">' .
-                'Go to Sportcards Customizer Settings</a>';
+                'Go to settings</a>';
         }
 
         return;
@@ -23,16 +28,17 @@
         <div class="FieldContainer">
             <div class="FieldContainer__label">Материал</div>
             <select id="material" class="FieldContainer__field">
-                <option value="pvc">PVC</option>
-                <option value="metal">Метал</option>
+                <?php foreach ($materials as $material) : ?>
+                    <option value='<?= $material->Id ?>'><?= $material->Text ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="FieldContainer">
             <div class="FieldContainer__label">Размер</div>
             <select id="size" class="FieldContainer__field">
-                <option value="small">Малък - 24x15</option>
-                <option value="medium">Среден - 30x19</option>
-                <option value="large">Голям - 40x25</option>
+                <?php foreach ($sizes as $size) : ?>
+                    <option value='<?= $size->Id ?>'><?= $size->Text ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 

@@ -1,4 +1,27 @@
 jQuery(document).ready(() => {
+    jQuery('#updatePrices').on('click', function() {
+        var prices = [];
+
+        jQuery('.PricingTable__price').each(function() {
+            prices.push({
+                sizeId: jQuery(this).data('size-id'),
+                materialId: jQuery(this).data('material-id'),
+                price: jQuery(this).val()
+            });
+        });
+
+        jQuery.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                action: 'update_prices',
+                prices: JSON.stringify(prices)
+            },
+            success: () => location.reload()
+        });
+    });
+
     jQuery('.ItemContainer__item-delete').click(function () {
         if (confirm('Are you sure you want to delete this record?')) {
             const clubId = jQuery(this).data('club-id');

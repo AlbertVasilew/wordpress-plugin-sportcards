@@ -51,4 +51,21 @@
         $wpdb->delete($wpdb->prefix . 'sportcards_cards', array('Id' => intval($_POST['id'])));
         die();
     }
+
+    function update_prices() {
+        global $wpdb;
+        $prices = json_decode(stripslashes($_POST['prices']), true);
+
+        foreach ($prices as $price) {
+            $wpdb->replace(
+                $wpdb->prefix . 'sportcards_prices',
+                array(
+                    'size_id' => $price['sizeId'],
+                    'material_id' => $price['materialId'],
+                    'price' => $price['price'],
+                ),
+                array('%d', '%d', '%s')
+            );
+        }
+    }
 ?>

@@ -82,3 +82,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#PricingTable {
+    width: 100%;
+    text-align: left;
+    border-spacing: 0;
+}
+
+#PricingTable th {
+    border-bottom: 1px solid black;
+    padding: 5px 0px;
+}
+
+#PricingTable td {
+    padding: 5px 0px;
+}
