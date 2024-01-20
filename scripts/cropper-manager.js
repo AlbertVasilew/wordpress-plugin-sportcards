@@ -1,11 +1,10 @@
 class CropperManager {
-    constructor(modal, croppedImage, context) {
-        this.context = context;
+    constructor(modal, croppedImage) {
         this.modal = modal;
         this.croppedImage = croppedImage;
     }
 
-    open = (image) => {
+    open = image => {
         if (this.cropper)
             this.cropper.destroy();
 
@@ -20,13 +19,6 @@ class CropperManager {
         this.modal.style.display = "block";
     }
 
-    close = () => {
-        const canvasImage = new Image();
-        canvasImage.src = this.getImageData();
-        canvasImage.onload = () => this.context.drawImage(canvasImage, 165, 90, 180, 180);
-
-        this.modal.style.display = "none";
-    }
-
-    getImageData = () => this.cropper?.getCroppedCanvas().toDataURL();
+    close = () => this.modal.style.display = "none";
+    getImageData = () => this.cropper?.getCroppedCanvas()?.toDataURL();
 }

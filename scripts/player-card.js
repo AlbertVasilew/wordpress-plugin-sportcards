@@ -1,162 +1,107 @@
 class PlayerCard {
-    constructor(canvas, context, color) {
+    constructor(canvas, context) {
         this.canvas = canvas;
         this.ctx = context;
-        this.color = color;
+        this.playerImage = new Image();
         this.cardImage = new Image();
         this.clubLogo = new Image();
         this.countryFlag = new Image();
         this.countryFlag.crossOrigin = 'anonymous';
+
+        this.pac = {}, this.sho = {}, this.pas = {}, this.def = {}, this.dri = {}, this.phy = {},
+        this.position = {}, this.size = {}, this.material = {}, this.name = {}, this.rating = {};
     }
 
-    setMaterial(value) {
-        this.material = value;
+    setImageSourceHandler = (image, source, properties) => {
+        if (!source) return;
+
+        image.src = source;
+        image.onload = () => this.ctx.drawImage(image, properties.x, properties.y, properties.width, properties.height);
     }
 
-    setSize(value) {
-        this.size = value;
+    setText = (object, value, properties) => {
+        if (object != null)
+            object.value = value;
+
+        this.ctx.font = properties.font;
+        this.ctx.fillText(value, properties.x, properties.y);
     }
 
-    setColor(value) {
-        this.color = value;
+    setMaterial = value => this.material.value = value;
+    setSize = value => this.size.value = value;
+    setColor = value => this.ctx.fillStyle = value;
+    setRating = value => this.setText(this.rating, value, {font: 'bold 35px Arial', x: 90, y: 115});
+    setPosition = value => this.setText(this.position, value, {font: '30px Arial', x: 90, y: 150});
+    setClubLogo = value => this.setImageSourceHandler(this.clubLogo, value, {x: 90, y: 210, width: 40, height: 50});
+    setCardImage = value => this.cardImage.src = value;
+
+    setCharHeading = (value, properties) =>
+        this.setText(null, value, {font: '23px Arial', x: properties.x, y: properties.y});
+
+    setCharValue = (object, value, properties) => 
+        this.setText(object, value, {font: 'bold 23px Arial', x: properties.x, y: properties.y});
+
+    setPlayerImage = value =>
+        this.setImageSourceHandler(this.playerImage, value, {x: 165, y: 90, width: 180, height: 180});
+
+    setCountryFlag = value =>
+        this.setImageSourceHandler(this.countryFlag, value, {x: 90, y: 165, width: 40, height: 25});
+
+    setName = value => this.setText(
+        this.name,
+        value,
+        {font: 'bold 30px Arial', x: (this.ctx.canvas.width - this.ctx.measureText(value).width) / 2, y: 295}
+    );
+
+    setPac = value => {
+        this.setCharHeading('PAC', {x: 135, y: 340});
+        this.setCharValue(this.pac, value, {x: 95, y: 340});
     }
 
-    setCardImage(value) {
-        this.cardImage.src = value;
+    setSho = value => {
+        this.setCharHeading('SHO', {x: 135, y: 370});
+        this.setCharValue(this.sho, value, {x: 95, y: 370});
     }
 
-    setClubLogo(value) {
-        this.clubLogo.src = value;
-        this.clubLogo.onload = () => {
-            this.ctx.drawImage(this.clubLogo, 90, 210, 40, 50);
-        }
+    setPas = value => {
+        this.setCharHeading('PAS', {x: 135, y: 400});
+        this.setCharValue(this.pas, value, {x: 95, y: 400});
     }
 
-    setCountryFlag(value) {
-        this.countryFlag.src = value;
-        this.countryFlag.onload = () => {
-            this.ctx.drawImage(this.countryFlag, 90, 165, 40, 25);
-        }
+    setDef = value => {
+        this.setCharHeading('DEF', {x: 250, y: 370});
+        this.setCharValue(this.def, value, {x: 210, y: 370});
     }
 
-    setRating(value) {
-        this.ctx.font = 'bold 35px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 90, 115);
-        this.rating = value;
+    setDri = value => {
+        this.setCharHeading('DRI', {x: 250, y: 340});
+        this.setCharValue(this.dri, value, {x: 210, y: 340});
     }
 
-    setPosition(value) {
-        this.ctx.font = '30px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 90, 150);
-        this.position = value;
+    setPhy = value => {
+        this.setCharHeading('PHY', {x: 250, y: 400});
+        this.setCharValue(this.phy, value, {x: 210, y: 400});
     }
 
-    setName(value) {
-        this.ctx.font = 'bold 30px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, (this.ctx.canvas.width - this.ctx.measureText(value).width) / 2, 295);
-        this.name = value;
-    }
+    getCardImage = () => this.cardImage;
 
-    setPac(value) {
-        this.ctx.font = '23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText('PAC', 135, 340);
-
-        this.ctx.font = 'bold 23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 95, 340);
-
-        this.pac = value;
-    }
-
-    setSho(value) {
-        this.ctx.font = '23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText('SHO', 135, 370);
-
-        this.ctx.font = 'bold 23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 95, 370);
-
-        this.sho = value;
-    }
-
-    setPas(value) {
-        this.ctx.font = '23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText('PAS', 135, 400);
-
-        this.ctx.font = 'bold 23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 95, 400);
-
-        this.pas = value;
-    }
-
-    setDef(value) {
-        this.ctx.font = '23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText('DEF', 250, 370);
-
-        this.ctx.font = 'bold 23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 210, 370);
-
-        this.def = value;
-    }
-
-    setDri(value) {
-        this.ctx.font = '23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText('DRI', 250, 340);
-
-        this.ctx.font = 'bold 23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 210, 340);
-
-        this.dri = value;
-    }
-
-    setPhy(value) {
-        this.ctx.font = '23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText('PHY', 250, 400);
-
-        this.ctx.font = 'bold 23px Arial';
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 210, 400);
-
-        this.phy = value;
-    }
-
-    getCardImage() {
-        return this.cardImage;
-    }
-
-    getCustomizedCardImage() {
-        return this.canvas.toDataURL();
-    }
-
-    getCardData() {
-        return {
-            material: this.material,
-            size: this.size,
-            color: this.color,
-            rating: this.rating,
-            position: this.position,
-            name: this.name,
-            pac: this.pac,
-            sho: this.sho,
-            pas: this.pas,
-            def: this.def,
-            dri: this.dri,
-            phy: this.phy,
-            cardImageUrl: this.cardImage.src,
-            countryFlagUrl: this.countryFlag.src,
-            clubLogoUrl: this.clubLogo.src
-        }
-    }
+    getCardData = () => ({
+        material: this.material?.value,
+        size: this.size?.value,
+        color: this.ctx.fillStyle,
+        rating: this.rating?.value,
+        position: this.position?.value,
+        name: this.name?.value,
+        pac: this.pac?.value,
+        sho: this.sho?.value,
+        pas: this.pas?.value,
+        def: this.def?.value,
+        dri: this.dri?.value,
+        phy: this.phy?.value,
+        customizedCardImageUrl: this.canvas.toDataURL(),
+        playerImageUrl: this.playerImage.src,
+        cardImageUrl: this.cardImage.src,
+        countryFlagUrl: this.countryFlag.src,
+        clubLogoUrl: this.clubLogo.src
+    });
 }

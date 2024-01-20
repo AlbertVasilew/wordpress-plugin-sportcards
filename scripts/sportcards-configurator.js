@@ -1,22 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById("myCanvas");
     const context = canvas.getContext("2d");
-    const playerCard = new PlayerCard(canvas, context, "black");
+    const playerCard = new PlayerCard(canvas, context);
     const priceCalculator = new PriceCalculator();
 
     const cropperManager = new CropperManager(
-        document.getElementById('image-modal'), document.getElementById('cropped-image'), context);
+        document.getElementById('image-modal'), document.getElementById('cropped-image'));
 
     jQuery("#SportCardsCustomizerFieldsContainer").on("change", () => updateVisualization());
     jQuery(".CardImage").on("click", event => updateVisualization(jQuery(event.currentTarget).attr("src")));
     jQuery("#image-input").on("change", event => cropperManager.open(event.target.files[0]));
-    jQuery("#modal-close").on("click", () => cropperManager.close());
+    
+    jQuery("#modal-close").on("click", () => {
+        cropperManager.close();
+        updateVisualization();
+    });
 
     jQuery("#addToCartBtn").on("click", () => {
         const cardData = playerCard.getCardData();
-        const playerImage = cropperManager.getImageData();
-        
-        if (Object.values(cardData).some(value => value === null || value === "") || !playerImage) {
+
+        if (Object.values(cardData).some(value => value === null || value === "")) {
             alert("Трябва да попълните всички полета");
             return;
         }
@@ -31,8 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {
                 action: 'generate_user_sportcard',
                 card_data: cardData,
-                player_image: playerImage,
-                customized_card_image: playerCard.getCustomizedCardImage(),
                 price: priceCalculator.getPrice()
             },
             success: response => window.location.href = response.redirect_url
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cardImage.onload = () => {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);
 
+            playerCard.setPlayerImage(cropperManager.getImageData());
             playerCard.setClubLogo(document.getElementById('club').value);
             playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
             playerCard.setMaterial(jQuery('#material option:selected').text());

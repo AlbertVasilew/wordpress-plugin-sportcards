@@ -19,13 +19,11 @@
         }
     }
 
-    function add_sportcard_to_cart($player_image_url, $customized_card_url)
+    function add_sportcard_to_cart($card_data, $player_image_url, $customized_card_url)
     {
         global $wpdb;
         $product_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND " .
             "meta_value='sportcards-customizer-system-product'");
-
-        $card_data = $_POST["card_data"];
 
         $cart_item_key = WC()->cart->add_to_cart($product_id, 1, 0, array(), array('card_data' => array(
             'Материал' => $card_data['material'],
@@ -68,9 +66,12 @@
     }
 
     function generate_user_sportcard() {
+        $card_data = $_POST["card_data"];
+
         add_sportcard_to_cart(
-            upload_image($_POST['player_image'], 'assets/player-images/player_image_'),
-            upload_image($_POST['customized_card_image'], 'assets/customized-cards/customized_card_'));
+            $card_data,
+            upload_image($card_data['playerImageUrl'], 'assets/player-images/player_image_'),
+            upload_image($card_data['customizedCardImageUrl'], 'assets/customized-cards/customized_card_'));
 
         wp_send_json(array('redirect_url' => wc_get_cart_url()));
         exit;
