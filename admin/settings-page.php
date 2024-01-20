@@ -19,21 +19,21 @@
     <div class="SectionContainer">
         <div class="modal" id="clubModal">
             <div class="modal-content" style="width: 200px;">
-                <h2>Add New Club</h2>
+                <h2>Добави нов клуб</h2>
                 <form id="clubForm">
-                    <label for="clubName">Club Name:</label>
+                    <label for="clubName">Име на клуб:</label>
                     <input type="text" id="clubName" name="clubName" required>
 
-                    <label for="clubImage">Club Image:</label>
+                    <label for="clubImage">Изображение за клуб:</label>
                     <input type="file" id="clubImage" name="clubImage" accept="image/*" required>
 
-                    <button type="button" id="saveClub">Save</button>
+                    <button type="button" id="saveClub">Запази</button>
                 </form>
             </div>
         </div>
         <div class="SectionContainerHeader">
-            <div class="SectionContainerHeader__title">Manage clubs</div>
-            <div class="SectionContainerHeader__add-new" id="addNewClubBtn">Add new club</div>
+            <div class="SectionContainerHeader__title">Управлявай клубове</div>
+            <div class="SectionContainerHeader__add-new" id="addNewClubBtn">Добави нов клуб</div>
         </div>
         <div class="SectionContainerItems">
             <?php
@@ -63,23 +63,23 @@
     <div class="SectionContainer">
         <div class="modal" id="cardModal">
             <div class="modal-content" style="width: 200px;">
-                <h2>Add New Card</h2>
+                <h2>Добави нова карта</h2>
                 <form id="cardForm" enctype="multipart/form-data">
-                    <label for="cardImages">Card Images:</label>
+                    <label for="cardImages">Изображения за карти:</label>
                     <input type="file" id="cardImages" name="cardImages[]" accept="image/*" multiple required>
 
-                    <button type="button" id="saveCard">Save</button>
+                    <button type="button" id="saveCard">Запази</button>
                 </form>
             </div>
         </div>
         <div class="SectionContainerHeader">
-            <div class="SectionContainerHeader__title">Manage cards</div>
-            <div class="SectionContainerHeader__add-new" id="addNewCardBtn">Add new card</div>
+            <div class="SectionContainerHeader__title">Управлявай карти</div>
+            <div class="SectionContainerHeader__add-new" id="addNewCardBtn">Добави нова карта</div>
         </div>
         <div class="SectionContainerItems">
             <?php
                 if (!$cards)
-                    echo "There are no added cards yet";
+                    echo "Няма налични карти";
 
                 foreach ($cards as $card) {
                     $id = $card->Id;
@@ -101,15 +101,15 @@
     </div>
     <div class="SectionContainer">
         <div class="SectionContainerHeader">
-            <div class="SectionContainerHeader__title">Manage pricing</div>
-            <div class="SectionContainerHeader__add-new" id="updatePrices">Update prices</div>
+            <div class="SectionContainerHeader__title">Управлявай цени</div>
+            <div class="SectionContainerHeader__add-new" id="updatePrices">Обнови цени</div>
         </div>
         <div class="SectionContainerItems">
             <table id="PricingTable">
                 <tr>
-                    <th>Size</th>
-                    <th>Material</th>
-                    <th>Price (<?php echo get_woocommerce_currency_symbol() ?>)</th>
+                    <th>Размер</th>
+                    <th>Материал</th>
+                    <th>Цена (<?php echo get_woocommerce_currency_symbol() ?>)</th>
                 </tr>
                 <?php foreach ($sizes as $size) : ?>
                     <?php foreach ($materials as $material) : ?>
