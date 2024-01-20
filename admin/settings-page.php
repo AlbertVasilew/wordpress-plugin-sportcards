@@ -15,7 +15,7 @@
 ?>
 
 <div class="wrap">
-    <h2>Sportcards Customizer Settings</h2>
+    <h2>Настройки на конфигуратор за карти</h2>
     <div class="SectionContainer">
         <div class="modal" id="clubModal">
             <div class="modal-content" style="width: 200px;">
