@@ -55,7 +55,7 @@ class PlayerCard {
     setName(value) {
         this.ctx.font = 'bold 30px Arial';
         this.ctx.fillStyle = this.color;
-        this.ctx.fillText(value, 167, 295);
+        this.ctx.fillText(value, (this.ctx.canvas.width - this.ctx.measureText(value).width) / 2, 295);
         this.name = value;
     }
 
@@ -136,7 +136,6 @@ class PlayerCard {
     }
 
     getCardData() {
-        console.log(this.cardImage);
         return {
             material: this.material,
             size: this.size,
