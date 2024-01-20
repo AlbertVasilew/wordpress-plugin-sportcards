@@ -57,7 +57,7 @@
                 ?>
             </select>
         </div>
-        <div class="skills-inputs-container" style="display: flex;">
+        <div class="skills-inputs-container">
             <div class="stat-inputs-container">
                 <div class="stat-input-container">
                     <label>PAC</label>
