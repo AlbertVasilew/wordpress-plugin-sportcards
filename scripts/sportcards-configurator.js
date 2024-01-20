@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        jQuery("#addToCartBtn").prop('disabled', true);
+        jQuery("#addToCartBtn").html('Зареждане...');
+
         jQuery.ajax({
             url: dependencies.ajax_url,
             type: 'POST',

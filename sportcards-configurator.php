@@ -140,6 +140,6 @@
             Крайна цена:
             <div id="PriceContainer__price"></div>
         </div>
-        <button id="addToCartBtn">Add to Cart</button>
+        <button id="addToCartBtn">Купи</button>
     </div>
 </div>

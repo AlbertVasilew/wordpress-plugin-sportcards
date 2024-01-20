@@ -285,3 +285,7 @@
 #addToCartBtn:hover {
     background: #e65600;
 }
+
+#addToCartBtn:disabled {
+    background: gray;
+  }
