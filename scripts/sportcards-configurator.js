@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             playerCard.setClubLogo(document.getElementById('club').value);
             playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
-            playerCard.setMaterial(document.getElementById('material').value);
-            playerCard.setSize(document.getElementById('size').value);
+            playerCard.setMaterial(jQuery('#material option:selected').text());
+            playerCard.setSize(jQuery('#size option:selected').text());
             playerCard.setColor(document.getElementById('selectedColor').value);
             playerCard.setPosition(document.getElementById('position').value);
             playerCard.setRating(document.getElementById('rating').value);

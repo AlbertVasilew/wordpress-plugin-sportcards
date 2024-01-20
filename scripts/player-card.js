@@ -136,7 +136,6 @@ class PlayerCard {
     }
 
     getCardData() {
-        console.log(this.cardImage);
         return {
             material: this.material,
             size: this.size,
