@@ -19,7 +19,7 @@
         }
     }
 
-    function add_sportcard_to_cart($image_url)
+    function add_sportcard_to_cart($player_image_url, $customized_card_url)
     {
         global $wpdb;
         $product_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND " .
@@ -43,7 +43,8 @@
             'Дизайн' => $card_data['cardImageUrl'],
             'Държава' => $card_data['countryFlagUrl'],
             'Отбор' => $card_data['clubLogoUrl'],
-            'Снимка' => $image_url,
+            'Снимка на играч' => $player_image_url,
+            'Завършен дизайн' => $customized_card_url,
             'price' => $_POST["price"]
         )));
     }
@@ -55,21 +56,21 @@
         }
     }
 
-    function upload_player_image() {
-        $image_data = $_POST['image_data'];
-        $image_data = str_replace('data:image/png;base64,', '', $image_data);
-        $image_data = str_replace(' ', '+', $image_data);
-        $image_data = base64_decode($image_data);
+    function upload_image($image_source, $path_and_prefix) {
+        $image = str_replace('data:image/png;base64,', '', $image_source);
+        $image = str_replace(' ', '+', $image);
+        $image = base64_decode($image);
 
-        $image_path = 'assets/player-images/player_image_' . uniqid() . '.png';
-        file_put_contents(plugin_dir_path(__FILE__) . $image_path, $image_data);
+        $image_path = $path_and_prefix . uniqid() . '.png';
+        file_put_contents(plugin_dir_path(__FILE__) . $image_path, $image);
 
-        return plugin_dir_url(dirname(__FILE__)) . $image_path;
+        return plugin_dir_url(__FILE__) . $image_path;
     }
 
     function generate_user_sportcard() {
-        $image_url = upload_player_image();
-        add_sportcard_to_cart($image_url);
+        add_sportcard_to_cart(
+            upload_image($_POST['player_image'], 'assets/player-images/player_image_'),
+            upload_image($_POST['customized_card_image'], 'assets/customized-cards/customized_card_'));
 
         wp_send_json(array('redirect_url' => wc_get_cart_url()));
         exit;

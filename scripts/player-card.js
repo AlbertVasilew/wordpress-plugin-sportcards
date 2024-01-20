@@ -6,6 +6,7 @@ class PlayerCard {
         this.cardImage = new Image();
         this.clubLogo = new Image();
         this.countryFlag = new Image();
+        this.countryFlag.crossOrigin = 'anonymous';
     }
 
     setMaterial(value) {
@@ -133,6 +134,10 @@ class PlayerCard {
 
     getCardImage() {
         return this.cardImage;
+    }
+
+    getCustomizedCardImage() {
+        return this.canvas.toDataURL();
     }
 
     getCardData() {

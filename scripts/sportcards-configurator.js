@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     jQuery("#addToCartBtn").on("click", () => {
         const cardData = playerCard.getCardData();
-        const imageData = cropperManager.getImageData();
+        const playerImage = cropperManager.getImageData();
         
-        if (Object.values(cardData).some(value => value === null || value === "") || !imageData) {
+        if (Object.values(cardData).some(value => value === null || value === "") || !playerImage) {
             alert("Трябва да попълните всички полета");
             return;
         }
@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {
                 action: 'generate_user_sportcard',
                 card_data: cardData,
-                image_data: imageData,
+                player_image: playerImage,
+                customized_card_image: playerCard.getCustomizedCardImage(),
                 price: priceCalculator.getPrice()
             },
             success: response => window.location.href = response.redirect_url
@@ -73,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
             playerCard.setCardImage(cardImageUrl ?? cardImage.src);
         else
             playerCard.setCardImage(dependencies.default_card);
-
-        console.log(dependencies.cards);
 
         cardImage.onload = () => {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);
