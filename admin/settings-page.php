@@ -63,9 +63,9 @@
     <div class="SectionContainer">
         <div class="modal" id="cardModal">
             <div class="modal-content" style="width: 200px;">
-                <h2>Добави нова карта</h2>
+                <h2>Добави нов дизайн</h2>
                 <form id="cardForm" enctype="multipart/form-data">
-                    <label for="cardImages">Изображения за карти:</label>
+                    <label for="cardImages">Дизайн:</label>
                     <input type="file" id="cardImages" name="cardImages[]" accept="image/*" multiple required>
 
                     <button type="button" id="saveCard">Запази</button>
@@ -73,13 +73,13 @@
             </div>
         </div>
         <div class="SectionContainerHeader">
-            <div class="SectionContainerHeader__title">Управлявай карти</div>
-            <div class="SectionContainerHeader__add-new" id="addNewCardBtn">Добави нова карта</div>
+            <div class="SectionContainerHeader__title">Управлявай дизайни</div>
+            <div class="SectionContainerHeader__add-new" id="addNewCardBtn">Добави нов дизайн</div>
         </div>
         <div class="SectionContainerItems">
             <?php
                 if (!$cards)
-                    echo "Няма налични карти";
+                    echo "Няма налични дизайни";
 
                 foreach ($cards as $card) {
                     $id = $card->Id;
