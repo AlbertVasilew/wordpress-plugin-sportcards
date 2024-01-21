@@ -211,7 +211,7 @@
     cursor: pointer;
 }
 
-.skills-inputs-container {
+#skills-inputs-container {
     display: flex;
     flex-direction: column;
 }

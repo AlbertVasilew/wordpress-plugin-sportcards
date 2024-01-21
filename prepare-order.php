@@ -25,26 +25,46 @@
         $product_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND " .
             "meta_value='sportcards-customizer-system-product'");
 
-        $cart_item_key = WC()->cart->add_to_cart($product_id, 1, 0, array(), array('card_data' => array(
+        $data = array(
             'Материал' => $card_data['material'],
             'Размер' => $card_data['size'],
             'Цвят' => $card_data['color'],
             'Рейтинг' => $card_data['rating'],
             'Позиция' => $card_data['position'],
             'Име' => $card_data['name'],
-            'PAC' => $card_data['pac'],
-            'SHO' => $card_data['sho'],
-            'PAS' => $card_data['pas'],
-            'DEF' => $card_data['def'],
-            'DRI' => $card_data['dri'],
-            'PHY' => $card_data['phy'],
+            'price' => $_POST["price"]
+        );
+
+        if ($card_data['position'] == 'GK') {
+            $data = array_merge($data, array(
+                'DIV' => $card_data['div'],
+                'HAN' => $card_data['han'],
+                'KIC' => $card_data['kic'],
+                'REF' => $card_data['ref'],
+                'SPE' => $card_data['spe'],
+                'POS' => $card_data['pos']
+            ));
+        }
+        else {
+            $data = array_merge($data, array(
+                'PAC' => $card_data['pac'],
+                'SHO' => $card_data['sho'],
+                'PAS' => $card_data['pas'],
+                'DEF' => $card_data['def'],
+                'DRI' => $card_data['dri'],
+                'PHY' => $card_data['phy']
+            ));
+        }
+
+        $data = array_merge($data, array(
             'Дизайн' => $card_data['cardImageUrl'],
             'Държава' => $card_data['countryFlagUrl'],
             'Отбор' => $card_data['clubLogoUrl'],
             'Снимка на играч' => $player_image_url,
             'Завършен дизайн' => $customized_card_url,
-            'price' => $_POST["price"]
-        )));
+        ));
+
+        $cart_item_key = WC()->cart->add_to_cart($product_id, 1, 0, array(), array('card_data' => $data));
     }
 
     function set_sportcard_price($cart_object) {

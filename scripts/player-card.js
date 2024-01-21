@@ -9,6 +9,7 @@ class PlayerCard {
         this.countryFlag.crossOrigin = 'anonymous';
 
         this.pac = {}, this.sho = {}, this.pas = {}, this.def = {}, this.dri = {}, this.phy = {},
+        this.div = {}, this.han = {}, this.kic = {}, this.ref = {}, this.spe = {}, this.pos = {},
         this.position = {}, this.size = {}, this.material = {}, this.name = {}, this.rating = {};
     }
 
@@ -83,6 +84,36 @@ class PlayerCard {
         this.setCharValue(this.phy, value, {x: 210, y: 400});
     }
 
+    setDiv = value => {
+        this.setCharHeading('DIV', {x: 135, y: 340});
+        this.setCharValue(this.div, value, {x: 95, y: 340});
+    }
+
+    setHan = value => {
+        this.setCharHeading('HAN', {x: 135, y: 370});
+        this.setCharValue(this.han, value, {x: 95, y: 370});
+    }
+
+    setKic = value => {
+        this.setCharHeading('KIC', {x: 135, y: 400});
+        this.setCharValue(this.kic, value, {x: 95, y: 400});
+    }
+
+    setSpe = value => {
+        this.setCharHeading('SPE', {x: 250, y: 370});
+        this.setCharValue(this.spe, value, {x: 210, y: 370});
+    }
+
+    setRef = value => {
+        this.setCharHeading('REF', {x: 250, y: 340});
+        this.setCharValue(this.ref, value, {x: 210, y: 340});
+    }
+
+    setPos = value => {
+        this.setCharHeading('POS', {x: 250, y: 400});
+        this.setCharValue(this.pos, value, {x: 210, y: 400});
+    }
+
     getCardImage = () => this.cardImage;
 
     getCardData = () => ({
@@ -98,6 +129,12 @@ class PlayerCard {
         def: this.def?.value,
         dri: this.dri?.value,
         phy: this.phy?.value,
+        div: this.div?.value,
+        han: this.han?.value,
+        kic: this.kic?.value,
+        ref: this.ref?.value,
+        spe: this.spe?.value,
+        pos: this.pos?.value,
         customizedCardImageUrl: this.canvas.toDataURL(),
         playerImageUrl: this.playerImage.src,
         cardImageUrl: this.cardImage.src,

@@ -57,36 +57,8 @@
                 ?>
             </select>
         </div>
-        <div class="skills-inputs-container">
-            <div class="stat-inputs-container">
-                <div class="stat-input-container">
-                    <label>PAC</label>
-                    <input type="number" min="0" max="99" id="pac" value="99" class="stat-input">
-                </div>
-                <div class="stat-input-container">
-                    <label>SHO</label>
-                    <input type="number" min="0" max="99" id="sho" value="99" class="stat-input">
-                </div>
-                <div class="stat-input-container">
-                    <label>PAS</label>
-                    <input type="number" min="0" max="99" id="pas" value="99" class="stat-input">
-                </div>
-            </div>
-            <div class="stat-inputs-container">
-                <div class="stat-input-container">
-                    <label>DRI</label>
-                    <input type="number" min="0" max="99" id="dri" value="99" class="stat-input">
-                </div>
-                <div class="stat-input-container">
-                    <label>DEF</label>
-                    <input type="number" min="0" max="99" id="def" value="99" class="stat-input">
-                </div>
-                <div class="stat-input-container">
-                    <label>PHY</label>
-                    <input type="number" min="0" max="99" id="phy" value="99" class="stat-input">
-                </div>
-            </div>
-        </div>
+        
+        <div id="skills-inputs-container"></div>
 
         <div class="FieldContainer">
             <div class="FieldContainer__label">Рейтинг</div>
@@ -99,6 +71,20 @@
                 <option value="GK">GK</option>
                 <option value="LB">LB</option>
                 <option value="LWB">LWB</option>
+                <option value="RWB">RWB</option>
+                <option value="RB">RB</option>
+                <option value="CB">CB</option>
+                <option value="LM">LM</option>
+                <option value="LW">LW</option>
+                <option value="CDM">CDM</option>
+                <option value="CM">CM</option>
+                <option value="CAM">CAM</option>
+                <option value="RM">RM</option>
+                <option value="RW">RW</option>
+                <option value="ST">ST</option>
+                <option value="CF">CF</option>
+                <option value="LF">LF</option>
+                <option value="RF">RF</option>
             </select>
         </div>
 

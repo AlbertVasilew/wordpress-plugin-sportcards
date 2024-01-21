@@ -62,7 +62,42 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('PriceContainer__price').innerText = priceCalculator.getPriceWithCurrency();
     };
 
+    const position = jQuery("#position");
+    let lastPosition;
+
+    const updateStats = () => {
+        if (lastPosition == position.val())
+            return;
+
+        lastPosition = position.val();
+
+        const skillsContainer = jQuery("#skills-inputs-container");
+        skillsContainer.empty();
+
+        const goalKeeperStats = ['div', 'han', 'kic', 'ref', 'spe', 'pos'];
+        const nonGoalKeeperStats = ['pac', 'sho', 'pas', 'dri', 'def', 'phy'];
+        const statsArray = position.val() == 'GK' ? goalKeeperStats : nonGoalKeeperStats;
+
+        statsArray.forEach((stat, index) => {
+            if (index % 3 === 0) {
+                const statInputsContainer = jQuery('<div>').addClass('stat-inputs-container');
+                skillsContainer.append(statInputsContainer);
+            }
+    
+            const statContainer = jQuery('<div>').addClass('stat-input-container');
+            const label = jQuery('<label>').text(stat.toUpperCase());
+
+            const input = jQuery('<input>')
+                .attr({type: 'number', min: 0, max: 99, id: stat, value: 99})
+                .addClass('stat-input');
+
+            statContainer.append(label, input);
+            skillsContainer.find('.stat-inputs-container:last').append(statContainer);
+        });
+    };
+
     const updateVisualization = cardImageUrl => {
+        updateStats();
         updateCard(cardImageUrl);
         updatePrice();
     }
@@ -88,12 +123,23 @@ document.addEventListener('DOMContentLoaded', function () {
             playerCard.setPosition(document.getElementById('position').value);
             playerCard.setRating(document.getElementById('rating').value);
             playerCard.setName(document.getElementById('name').value);
-            playerCard.setPac(document.getElementById('pac').value);
-            playerCard.setSho(document.getElementById('sho').value);
-            playerCard.setPas(document.getElementById('pas').value);
-            playerCard.setDri(document.getElementById('dri').value);
-            playerCard.setDef(document.getElementById('def').value);
-            playerCard.setPhy(document.getElementById('phy').value);
+
+            if (position.val() == "GK") {
+                playerCard.setDiv(document.getElementById('div').value);
+                playerCard.setHan(document.getElementById('han').value);
+                playerCard.setKic(document.getElementById('kic').value);
+                playerCard.setRef(document.getElementById('ref').value);
+                playerCard.setSpe(document.getElementById('spe').value);
+                playerCard.setPos(document.getElementById('pos').value);
+            }
+            else {
+                playerCard.setPac(document.getElementById('pac').value);
+                playerCard.setSho(document.getElementById('sho').value);
+                playerCard.setPas(document.getElementById('pas').value);
+                playerCard.setDri(document.getElementById('dri').value);
+                playerCard.setDef(document.getElementById('def').value);
+                playerCard.setPhy(document.getElementById('phy').value);
+            }
         }
     }
 

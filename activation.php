@@ -36,7 +36,6 @@
         if ($wpdb->get_var("SHOW TABLES LIKE '$materials_table'") != $materials_table) {
             dbDelta("CREATE TABLE $materials_table (
                 Id INT NOT NULL AUTO_INCREMENT, 
-                Name VARCHAR(50) NOT NULL,
                 Text VARCHAR(50) NOT NULL,
                 PRIMARY KEY (Id)
             ) $charset_collate;");
@@ -45,7 +44,6 @@
         if ($wpdb->get_var("SHOW TABLES LIKE '$sizes_table'") != $sizes_table) {
             dbDelta("CREATE TABLE $sizes_table (
                 Id INT NOT NULL AUTO_INCREMENT, 
-                Name VARCHAR(50) NOT NULL,
                 Text VARCHAR(50) NOT NULL,
                 PRIMARY KEY (Id)
             ) $charset_collate;");
