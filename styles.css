@@ -10,6 +10,7 @@
 
 #myCanvas {
     border-radius: 10px;
+    max-width: -webkit-fill-available;
 }
 
 #SportCardsCustomizerFieldsContainer {
@@ -20,15 +21,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 
-.FieldContainer__label {
-    width: 100% !important;
-}
-
+.FieldContainer__label,
 .FieldContainer__field {
-    width: 100% !important;
+    width: 100%;
     padding: 5px;
 }
 
@@ -58,10 +56,6 @@
     margin-left: 20px;
 }
 
-
-
-
-
 #image-modal {
     display: none;
     position: fixed;
@@ -69,20 +63,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    /* Set a percentage width for responsiveness */
     max-width: 500px;
-    /* Set a maximum width for larger screens */
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     box-sizing: border-box;
-    /* Include padding and border in the element's total width and height */
 }
 
 #cropped-image {
     width: 100%;
-    /* Make the image fill the container */
-    height: auto;
     max-height: 500px;
     object-fit: cover;
 }
@@ -99,12 +88,10 @@
     background-color: #45a049;
 }
 
-/* Media query for smaller screens (e.g., mobile devices) */
 @media (max-width: 768px) {
     #image-modal {
         width: 90%;
         max-width: none;
-        /* Remove max-width for smaller screens */
     }
 
     #cropped-image {
@@ -125,7 +112,7 @@
 }
 
 .SectionContainer {
-    margin: 30px 0px;
+    margin: 30px 0;
 }
 
 .SectionContainerItems {
@@ -139,7 +126,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 
 .SectionContainerHeader__title {
@@ -216,15 +203,6 @@
     flex-direction: column;
 }
 
-.FieldContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-.FieldContainer__field {
-    max-width: 300px;
-}
-
 .price-color-picker {
     display: flex;
     align-items: center;
@@ -243,8 +221,8 @@
     border-radius: 100px;
     cursor: pointer;
     margin-top: 15px;
-    display: block !important;
-    text-align: center !important;
+    display: block;
+    text-align: center;
 }
 
 #image-input-label:hover {
@@ -288,4 +266,45 @@
 
 #addToCartBtn:disabled {
     background: gray;
+}
+
+
+/* TODO */
+
+.MaterialField {
+    display: flex;
+    gap: 10px;
   }
+  
+  .material-option {
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #D1D5DB;
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .SizeField {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .size-option {
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #D1D5DB;
+    padding: 10px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  

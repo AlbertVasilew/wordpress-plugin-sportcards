@@ -27,19 +27,20 @@
     <div id="SportCardsCustomizerFieldsContainer">
         <div class="FieldContainer">
             <div class="FieldContainer__label">Материал</div>
-            <select id="material" class="FieldContainer__field">
+            <div id="material" class="FieldContainer__field MaterialField">
                 <?php foreach ($materials as $material) : ?>
-                    <option value='<?= $material->Id ?>'><?= $material->Text ?></option>
+                    <div class="material-option" data-value="<?= $material->Id ?>"><?= $material->Text ?></div>
                 <?php endforeach; ?>
-            </select>
+            </div>
         </div>
+
         <div class="FieldContainer">
             <div class="FieldContainer__label">Размер</div>
-            <select id="size" class="FieldContainer__field">
+            <div id="size" class="FieldContainer__field SizeField">
                 <?php foreach ($sizes as $size) : ?>
-                    <option value='<?= $size->Id ?>'><?= $size->Text ?></option>
+                    <div class="size-option" data-value="<?= $size->Id ?>"><?= $size->Text ?></div>
                 <?php endforeach; ?>
-            </select>
+            </div>
         </div>
 
         <div class="FieldContainer">
