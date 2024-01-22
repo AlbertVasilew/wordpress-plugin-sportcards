@@ -6,7 +6,7 @@ class PriceCalculator {
     }
 
     calculatePrice = (size, material) => this.prices.find(
-        x => x.Size_Id === size && x.Material_Id === material)?.Price;
+        x => x.Size_Id == size && x.Material_Id == material)?.Price;
 
     getPrice = () => this.price;
     getPriceWithCurrency = () => `${this.price} ${this.currency}`;

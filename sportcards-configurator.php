@@ -28,8 +28,14 @@
         <div class="FieldContainer">
             <div class="FieldContainer__label">Материал</div>
             <div id="material" class="FieldContainer__field MaterialField">
-                <?php foreach ($materials as $material) : ?>
-                    <div class="material-option" data-value="<?= $material->Id ?>"><?= $material->Text ?></div>
+                <?php foreach ($materials as $key => $material) : ?>
+                    <div
+                        class="material-option <?= ($key === 0) ? 'selected' : '' ?>"
+                        data-value="<?= $material->Id ?>"
+                        data-text="<?= $material->Text ?>"
+                    >
+                        <?= $material->Text ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -37,8 +43,14 @@
         <div class="FieldContainer">
             <div class="FieldContainer__label">Размер</div>
             <div id="size" class="FieldContainer__field SizeField">
-                <?php foreach ($sizes as $size) : ?>
-                    <div class="size-option" data-value="<?= $size->Id ?>"><?= $size->Text ?></div>
+                <?php foreach ($sizes as $key => $size) : ?>
+                    <div
+                        class="size-option <?= ($key === 0) ? 'selected' : '' ?>"
+                        data-value="<?= $size->Id ?>"
+                        data-text="<?= $size->Text ?>"
+                    >
+                        <?= $size->Text ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>

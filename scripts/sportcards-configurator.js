@@ -11,6 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
     jQuery(".CardImage").on("click", event => updateVisualization(jQuery(event.currentTarget).attr("src")));
     jQuery("#image-input").on("change", event => cropperManager.open(event.target.files[0]));
     
+    const applySelectElementHandler = selector => {
+        jQuery(selector).on("click", event => {
+            jQuery(selector).removeClass("selected");
+            jQuery(event.currentTarget).addClass("selected");
+            updateVisualization();
+        });
+    }
+
+    applySelectElementHandler(".material-option");
+    applySelectElementHandler(".size-option");
+    
     jQuery("#modal-close").on("click", () => {
         cropperManager.close();
         updateVisualization();
@@ -48,17 +59,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const updatePrice = () => {
-        const material = document.getElementById('material');
-        const size = document.getElementById('size');
-        const sizes = Array.from(size.options);
+        const materialValue = jQuery('.material-option.selected').data('value');
+        const sizeValue = jQuery('.size-option.selected').data('value');
+        const sizes = jQuery('.size-option');
 
-        sizes.forEach(size => {
-            const price = priceCalculator.calculatePrice(size.value, material.value);
-            const baseText = size.text.replace(/\s?\([^)]+\)/g, '');
-            size.text = `${baseText} (${price} ${priceCalculator.getCurrency()})`;
+        sizes.each(function() {
+            const size = jQuery(this);
+            const price = priceCalculator.calculatePrice(size.data('value'), materialValue);
+            const baseText = size.text().replace(/\s?\([^)]+\)/g, '');
+
+            size.text(`${baseText} (${price} ${priceCalculator.getCurrency()})`);
         });
 
-        priceCalculator.setPrice(size.value, material.value);
+        priceCalculator.setPrice(sizeValue, materialValue);
         document.getElementById('PriceContainer__price').innerText = priceCalculator.getPriceWithCurrency();
     };
 
@@ -117,8 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
             playerCard.setPlayerImage(cropperManager.getImageData());
             playerCard.setClubLogo(document.getElementById('club').value);
             playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
-            playerCard.setMaterial(jQuery('#material option:selected').text());
-            playerCard.setSize(jQuery('#size option:selected').text());
+            playerCard.setMaterial(jQuery('.material-option.selected').data('text'));
+            playerCard.setSize(jQuery('.size-option.selected').data('text'));
             playerCard.setColor(document.getElementById('selectedColor').value);
             playerCard.setPosition(document.getElementById('position').value);
             playerCard.setRating(document.getElementById('rating').value);
