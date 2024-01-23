@@ -49,7 +49,8 @@
                         data-value="<?= $size->Id ?>"
                         data-text="<?= $size->Text ?>"
                     >
-                        <?= $size->Text ?>
+                        <p><?= $size->Name ?></p>
+                        <p><?= $size->Text ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>

@@ -290,3 +290,13 @@
 #addToCartBtn:disabled {
     background: gray;
 }
+
+.size-option {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.size-option p {
+    margin: 0px;
+}

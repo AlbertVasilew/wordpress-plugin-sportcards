@@ -62,15 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const materialValue = jQuery('.material-option.selected').data('value');
         const sizeValue = jQuery('.size-option.selected').data('value');
         const sizes = jQuery('.size-option');
-
+    
         sizes.each(function() {
             const size = jQuery(this);
             const price = priceCalculator.calculatePrice(size.data('value'), materialValue);
-            const baseText = size.text().replace(/\s?\([^)]+\)/g, '');
-
-            size.text(`${baseText} (${price} ${priceCalculator.getCurrency()})`);
+            const baseText = size.html().replace(/\s?\([^)]+\)/g, '');
+    
+            size.html(`${baseText}<p>(${price} ${priceCalculator.getCurrency()})</p>`);
         });
-
+    
         priceCalculator.setPrice(sizeValue, materialValue);
         document.getElementById('PriceContainer__price').innerText = priceCalculator.getPriceWithCurrency();
     };
