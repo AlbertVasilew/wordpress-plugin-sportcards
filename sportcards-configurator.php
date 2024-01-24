@@ -82,6 +82,7 @@
         <div class="FieldContainer">
             <div class="FieldContainer__label">Позиция</div>
             <select id="position" class="FieldContainer__field">
+                <option value="ST">ST</option>
                 <option value="GK">GK</option>
                 <option value="LB">LB</option>
                 <option value="LWB">LWB</option>
@@ -95,7 +96,6 @@
                 <option value="CAM">CAM</option>
                 <option value="RM">RM</option>
                 <option value="RW">RW</option>
-                <option value="ST">ST</option>
                 <option value="CF">CF</option>
                 <option value="LF">LF</option>
                 <option value="RF">RF</option>
