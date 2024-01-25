@@ -14,47 +14,52 @@ document.addEventListener('DOMContentLoaded', function () {
     const customClubLogo = jQuery("#custom_club_logo");
     const customClubLogoLoader = jQuery("#custom_club_logo_loader");
 
-    customClubLogo.on("change", () => {
-        customClubLogoLoader.show();
-        customClubLogo.prop('disabled', true);
-        const logoUrl = customClubLogo.val();
-        const errorMessage = "Възникна проблем с качването на избраното от Вас лого. Пробвайте с друг линк.";
-        try {
-            new URL(logoUrl);
-
-            if (window.location.host !== new URL(logoUrl).host) {
-                jQuery.ajax({
-                    url: dependencies.ajax_url,
-                    type: 'POST',
-                    dataType: 'JSON',
-                    data: {
-                        action: 'upload_custom_club_logo',
-                        logoUrl: logoUrl
-                    },
-                    success: response => {
-                        customClubLogoLoader.hide();
-                        customClubLogo.prop('disabled', false);
-                        if (response.data.uploaded_club_logo_url)
-                            customClubLogo.val(response.data.uploaded_club_logo_url);
-                        else {
-                            alert(errorMessage);
-                            customClubLogo.val();
-                        }
-    
-                        updateCard();
-                    },
-                    error: () => {
-                        customClubLogoLoader.hide();
-                        customClubLogo.prop('disabled', false);
-                        alert(errorMessage);
-                    }
-                });
-            }
-        } catch (error) {
+    const setCustomClubRequestLoadingState = (loading = true) => {
+        if (loading) {
+            customClubLogoLoader.show();
+            customClubLogo.prop('disabled', true);
+        }
+        else {
             customClubLogoLoader.hide();
             customClubLogo.prop('disabled', false);
-            customClubLogo.val();
-            alert(errorMessage);
+        }
+    }
+
+    const errorMessage = "Възникна проблем с качването на избраното от Вас лого. Пробвайте с друг линк.";
+
+    customClubLogo.on("change", () => {
+        const logoUrl = customClubLogo.val();
+        playerCard.setCustomClubLogoExternal(logoUrl);
+
+        if (window.location.host !== new URL(logoUrl).host) {
+            setCustomClubRequestLoadingState();
+
+            jQuery.ajax({
+                url: dependencies.ajax_url,
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action: 'upload_custom_club_logo',
+                    logoUrl: logoUrl
+                },
+                success: response => {
+                    setCustomClubRequestLoadingState(false);
+
+                    if (response.data.uploaded_club_logo_url)
+                        customClubLogo.val(response.data.uploaded_club_logo_url);
+                    else {
+                        alert(errorMessage);
+                        customClubLogo.val();
+                    }
+
+                    updateCard();
+                },
+                error: () => {
+                    setCustomClubRequestLoadingState(false);
+                    customClubLogo.val();
+                    alert(errorMessage);
+                }
+            });
         }
     });
     

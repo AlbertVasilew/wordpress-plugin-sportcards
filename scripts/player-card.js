@@ -11,7 +11,8 @@ class PlayerCard {
 
         this.pac = {}, this.sho = {}, this.pas = {}, this.def = {}, this.dri = {}, this.phy = {},
         this.div = {}, this.han = {}, this.kic = {}, this.ref = {}, this.spe = {}, this.pos = {},
-        this.position = {}, this.size = {}, this.material = {}, this.name = {}, this.rating = {};
+        this.position = {}, this.size = {}, this.material = {}, this.name = {}, this.rating = {},
+        this.customClubLogoExternal = {};
     }
 
     setImageSourceHandler = (image, source, properties) => {
@@ -115,6 +116,8 @@ class PlayerCard {
         this.setCharValue(this.pos, value, {x: 210, y: 400});
     }
 
+    setCustomClubLogoExternal = value => this.customClubLogoExternal.value = value;
+
     getCardImage = () => this.cardImage;
 
     getCardData = () => ({
@@ -140,6 +143,6 @@ class PlayerCard {
         playerImageUrl: this.playerImage.src,
         cardImageUrl: this.cardImage.src,
         countryFlagUrl: this.countryFlag.src,
-        clubLogoUrl: this.clubLogo.src
+        clubLogoUrl: this.customClubLogoExternal.value ? this.customClubLogoExternal.value : this.clubLogo.src
     });
 }
