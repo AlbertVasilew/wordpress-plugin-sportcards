@@ -73,6 +73,7 @@
                 </select>
                 <div id="CustomLogoSeparatorText">или</div>
                 <input placeholder="линк към лого" type="text" id="custom_club_logo" class="FieldContainer__field"/>
+                <span id="custom_club_logo_loader"></span>
             </div>
         </div>
         

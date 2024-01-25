@@ -12,34 +12,51 @@ document.addEventListener('DOMContentLoaded', function () {
     jQuery("#image-input").on("change", event => cropperManager.open(event.target.files[0]));
 
     const customClubLogo = jQuery("#custom_club_logo");
+    const customClubLogoLoader = jQuery("#custom_club_logo_loader");
 
     customClubLogo.on("change", () => {
+        customClubLogoLoader.show();
+        customClubLogo.prop('disabled', true);
         const logoUrl = customClubLogo.val();
         const errorMessage = "Възникна проблем с качването на избраното от Вас лого. Пробвайте с друг линк.";
+        try {
+            new URL(logoUrl);
 
-        if (logoUrl && window.location.host !== new URL(logoUrl).host) {
-            jQuery.ajax({
-                url: dependencies.ajax_url,
-                type: 'POST',
-                dataType: 'JSON',
-                data: {
-                    action: 'upload_custom_club_logo',
-                    logoUrl: logoUrl
-                },
-                success: response => {
-                    if (response.data.uploaded_club_logo_url)
-                        customClubLogo.val(response.data.uploaded_club_logo_url);
-                    else {
+            if (window.location.host !== new URL(logoUrl).host) {
+                jQuery.ajax({
+                    url: dependencies.ajax_url,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        action: 'upload_custom_club_logo',
+                        logoUrl: logoUrl
+                    },
+                    success: response => {
+                        customClubLogoLoader.hide();
+                        customClubLogo.prop('disabled', false);
+                        if (response.data.uploaded_club_logo_url)
+                            customClubLogo.val(response.data.uploaded_club_logo_url);
+                        else {
+                            alert(errorMessage);
+                            customClubLogo.val();
+                        }
+    
+                        updateCard();
+                    },
+                    error: () => {
+                        customClubLogoLoader.hide();
+                        customClubLogo.prop('disabled', false);
                         alert(errorMessage);
-                        customClubLogo.val();
                     }
-
-                    updateCard();
-                },
-                error: () => alert(errorMessage)
-            });
+                });
+            }
+        } catch (error) {
+            customClubLogoLoader.hide();
+            customClubLogoLoader.prop('disabled', false);
+            customClubLogo.val();
+            alert(errorMessage);
         }
-    })
+    });
     
     const applySelectElementHandler = selector => {
         jQuery(selector).on("click", event => {

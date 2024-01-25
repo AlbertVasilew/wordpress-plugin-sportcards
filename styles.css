@@ -310,3 +310,15 @@
 #CustomLogoSeparatorText {
     margin: 10px;
 }
+
+#custom_club_logo_loader {
+    display: none;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 50px;
+    height: 23px;
+    animation: spin 3s linear infinite;
+    margin-top: 10px;
+    margin-left: 10px;
+}
