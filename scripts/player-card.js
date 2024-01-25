@@ -7,6 +7,7 @@ class PlayerCard {
         this.clubLogo = new Image();
         this.countryFlag = new Image();
         this.countryFlag.crossOrigin = 'anonymous';
+        this.clubLogo.crossOrigin = 'anonymous';
 
         this.pac = {}, this.sho = {}, this.pas = {}, this.def = {}, this.dri = {}, this.phy = {},
         this.div = {}, this.han = {}, this.kic = {}, this.ref = {}, this.spe = {}, this.pos = {},
