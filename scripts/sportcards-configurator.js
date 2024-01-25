@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         } catch (error) {
             customClubLogoLoader.hide();
-            customClubLogoLoader.prop('disabled', false);
+            customClubLogo.prop('disabled', false);
             customClubLogo.val();
             alert(errorMessage);
         }
