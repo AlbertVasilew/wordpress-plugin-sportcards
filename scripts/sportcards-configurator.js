@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
             context.drawImage(cardImage, 0, 0, canvas.width, canvas.height);
 
             playerCard.setPlayerImage(cropperManager.getImageData());
-            playerCard.setClubLogo(document.getElementById('club').value);
             playerCard.setCountryFlag(`https://flagcdn.com/h24/${document.getElementById('country').value}.png`);
             playerCard.setMaterial(jQuery('.material-option.selected').data('text'));
             playerCard.setSize(jQuery('.size-option.selected').data('text'));
@@ -136,6 +135,9 @@ document.addEventListener('DOMContentLoaded', function () {
             playerCard.setPosition(document.getElementById('position').value);
             playerCard.setRating(document.getElementById('rating').value);
             playerCard.setName(document.getElementById('name').value);
+
+            const customClubLogo = jQuery('#custom_club_logo').val();
+            playerCard.setClubLogo(customClubLogo ? customClubLogo : jQuery('#club').val());
 
             if (position.val() == "GK") {
                 playerCard.setDiv(document.getElementById('div').value);

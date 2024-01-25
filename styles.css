@@ -24,6 +24,12 @@
     margin: 5px 0;
 }
 
+.FieldContainer__multiple-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
 .FieldContainer__label,
 .FieldContainer__field {
     width: 100%;
@@ -299,4 +305,8 @@
 
 .size-option p {
     margin: 0px;
+}
+
+#CustomLogoSeparatorText {
+    margin: 10px;
 }

@@ -47,10 +47,10 @@
                     <div
                         class="size-option <?= ($key === 0) ? 'selected' : '' ?>"
                         data-value="<?= $size->Id ?>"
-                        data-text="<?= $size->Text ?>"
+                        data-text="<?= "{$size->Text} ({$size->Proportion})" ?>"
                     >
-                        <p><?= $size->Name ?></p>
                         <p><?= $size->Text ?></p>
+                        <p><?= $size->Proportion ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -62,14 +62,18 @@
         </div>
         
         <div class="FieldContainer">
-            <div class="FieldContainer__label">Отбор</div>
-            <select id="club" class="FieldContainer__field">
-                <?php
-                    foreach ($clubs as $club) {
-                        echo "<option value='" . $club->Image ."'>" . $club->Name . "</option>";
-                    }
-                ?>
-            </select>
+            <div class="FieldContainer__label">Лого на отбор</div>
+            <div class="FieldContainer__multiple-section">
+                <select id="club" class="FieldContainer__field">
+                    <?php
+                        foreach ($clubs as $club) {
+                            echo "<option value='" . $club->Image ."'>" . $club->Name . "</option>";
+                        }
+                    ?>
+                </select>
+                <div id="CustomLogoSeparatorText">или</div>
+                <input placeholder="линк към лого" type="text" id="custom_club_logo" class="FieldContainer__field"/>
+            </div>
         </div>
         
         <div id="skills-inputs-container"></div>
@@ -82,6 +86,7 @@
         <div class="FieldContainer">
             <div class="FieldContainer__label">Позиция</div>
             <select id="position" class="FieldContainer__field">
+                <option value="ST">ST</option>
                 <option value="GK">GK</option>
                 <option value="LB">LB</option>
                 <option value="LWB">LWB</option>
@@ -95,7 +100,6 @@
                 <option value="CAM">CAM</option>
                 <option value="RM">RM</option>
                 <option value="RW">RW</option>
-                <option value="ST">ST</option>
                 <option value="CF">CF</option>
                 <option value="LF">LF</option>
                 <option value="RF">RF</option>

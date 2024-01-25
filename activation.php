@@ -43,8 +43,9 @@
 
         if ($wpdb->get_var("SHOW TABLES LIKE '$sizes_table'") != $sizes_table) {
             dbDelta("CREATE TABLE $sizes_table (
-                Id INT NOT NULL AUTO_INCREMENT, 
+                Id INT NOT NULL AUTO_INCREMENT,
                 Text VARCHAR(50) NOT NULL,
+                Proportion VARCHAR(50) NOT NULL,
                 PRIMARY KEY (Id)
             ) $charset_collate;");
         }

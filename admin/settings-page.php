@@ -125,7 +125,7 @@
                         ?>
 
                         <tr>
-                            <td><?= $size->Text ?></td>
+                            <td><?= "{$size->Text} ({$size->Proportion})" ?></td>
                             <td><?= $material->Text ?></td>
                             <td>
                                 <input
