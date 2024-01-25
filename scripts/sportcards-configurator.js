@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const cropperManager = new CropperManager(
         document.getElementById('image-modal'), document.getElementById('cropped-image'));
 
+    jQuery(".mini_cart_item a[data-product_sku='sportcards-customizer-system-product']")
+        .parent().find('.quantity').hide();
+
     jQuery("#SportCardsCustomizerFieldsContainer").on("change", () => updateVisualization());
     jQuery(".CardImage").on("click", event => updateVisualization(jQuery(event.currentTarget).attr("src")));
     jQuery("#image-input").on("change", event => cropperManager.open(event.target.files[0]));
