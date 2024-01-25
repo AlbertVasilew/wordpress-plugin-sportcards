@@ -72,7 +72,8 @@
             $assets_dir . '/clubs',
             $assets_dir . '/cards',
             $assets_dir . '/player-images',
-            $assets_dir . '/customized-cards'
+            $assets_dir . '/customized-cards',
+            $assets_dir . '/custom-clubs-logos'
         );
         
         foreach ($directories as $directory) {
