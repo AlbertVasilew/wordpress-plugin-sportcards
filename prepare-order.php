@@ -97,13 +97,8 @@
         exit;
     }
 
-    function custom_card_design_as_thumbnail ( $_product_img, $cart_item, $cart_item_key ) {
-        if (isset($cart_item['card_data']['Завършен дизайн'])) {
-            $product_image_url = $cart_item['card_data']['Завършен дизайн'];
-            $img = '<img src="' . $product_image_url . '" />';
-            return $img;
-        } else {
-            return $_product_img;
-        }
+    function custom_card_design_as_thumbnail($_product_img, $cart_item, $cart_item_key) {
+        $card_design_url = $cart_item['card_data']['Завършен дизайн'];
+        return isset($card_design_url) ? '<img src="' . $card_design_url . '" />' : $_product_img;
     }
 ?>
