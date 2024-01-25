@@ -96,4 +96,14 @@
         wp_send_json(array('redirect_url' => wc_get_cart_url()));
         exit;
     }
+
+    function custom_card_design_as_thumbnail ( $_product_img, $cart_item, $cart_item_key ) {
+        if (isset($cart_item['card_data']['Завършен дизайн'])) {
+            $product_image_url = $cart_item['card_data']['Завършен дизайн'];
+            $img = '<img src="' . $product_image_url . '" />';
+            return $img;
+        } else {
+            return $_product_img;
+        }
+    }
 ?>
