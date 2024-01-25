@@ -18,4 +18,5 @@
 
     add_action('admin_menu', 'add_sportcards_settings_menu');
     add_filter('plugin_action_links_sportcards/sportcards.php', 'sportcards_settings_link');
+    add_filter ( 'woocommerce_cart_item_thumbnail', 'custom_card_design_as_thumbnail', 10, 3 );
 ?>
