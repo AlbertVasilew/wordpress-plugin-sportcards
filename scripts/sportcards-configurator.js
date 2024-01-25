@@ -10,6 +10,36 @@ document.addEventListener('DOMContentLoaded', function () {
     jQuery("#SportCardsCustomizerFieldsContainer").on("change", () => updateVisualization());
     jQuery(".CardImage").on("click", event => updateVisualization(jQuery(event.currentTarget).attr("src")));
     jQuery("#image-input").on("change", event => cropperManager.open(event.target.files[0]));
+
+    const customClubLogo = jQuery("#custom_club_logo");
+
+    customClubLogo.on("change", () => {
+        const logoUrl = customClubLogo.val();
+        const errorMessage = "Възникна проблем с качването на избраното от Вас лого. Пробвайте с друг линк.";
+
+        if (logoUrl && window.location.host !== new URL(logoUrl).host) {
+            jQuery.ajax({
+                url: dependencies.ajax_url,
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action: 'upload_custom_club_logo',
+                    logoUrl: logoUrl
+                },
+                success: response => {
+                    if (response.data.uploaded_club_logo_url)
+                        customClubLogo.val(response.data.uploaded_club_logo_url);
+                    else {
+                        alert(errorMessage);
+                        customClubLogo.val();
+                    }
+
+                    updateCard();
+                },
+                error: () => alert(errorMessage)
+            });
+        }
+    })
     
     const applySelectElementHandler = selector => {
         jQuery(selector).on("click", event => {

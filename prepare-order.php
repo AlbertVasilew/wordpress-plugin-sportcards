@@ -101,4 +101,20 @@
         $card_design_url = $cart_item['card_data']['Завършен дизайн'];
         return isset($card_design_url) ? '<img src="' . $card_design_url . '" />' : $_product_img;
     }
+
+    function upload_custom_club_logo() {
+        $response = wp_remote_get($_POST['logoUrl']);
+        $image_content = wp_remote_retrieve_body($response);
+    
+        $original_image = imagecreatefromstring($image_content);
+        $resized_image = imagescale($original_image, 40, 50);
+        $resized_image_path = 'assets/custom-clubs-logos/club_image_' . uniqid() . '.png';
+        $result_resized = imagepng($resized_image, plugin_dir_path(__FILE__) . $resized_image_path);
+    
+        imagedestroy($original_image);
+        imagedestroy($resized_image);
+    
+        wp_send_json_success(array('uploaded_club_logo_url' => plugin_dir_url(__FILE__) . $resized_image_path));
+        exit;
+    }    
 ?>

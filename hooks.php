@@ -9,6 +9,7 @@
     add_action('wp_ajax_delete_club', 'delete_club');
     add_action('wp_ajax_delete_card', 'delete_card');
     add_action('wp_ajax_update_prices', 'update_prices');
+    add_action('wp_ajax_upload_custom_club_logo', 'upload_custom_club_logo');
     add_action('wp_enqueue_scripts', 'enqueue_scripts');
     add_action('admin_enqueue_scripts', 'enqueue_scripts_admin');
     
