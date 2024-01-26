@@ -53,7 +53,7 @@ class PlayerCard {
     setName = value => this.setText(
         this.name,
         value,
-        {font: 'bold 30px Arial', x: (this.ctx.canvas.width - this.ctx.measureText(value).width) / 2, y: 295}
+        {font: 'bold 30px Arial', x: (this.ctx.canvas.width - this.ctx.measureText(value).width) / 1.75, y: 295}
     );
 
     setPac = value => {
