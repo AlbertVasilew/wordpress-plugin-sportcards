@@ -117,4 +117,15 @@
         wp_send_json_success(array('uploaded_club_logo_url' => plugin_dir_url(__FILE__) . $resized_image_path));
         exit;
     }    
+
+    function recalculateMiniCartOnAjaxRefresh() {
+        if (wp_doing_ajax() && ! empty( $_GET['wc-ajax'] ) && $_GET['wc-ajax'] === 'get_refreshed_fragments') {
+            // Calculate totals
+            WC()->cart->calculate_totals();
+            // Save cart to session
+            WC()->cart->set_session();
+            // Maybe set cart cookies
+            WC()->cart->maybe_set_cart_cookies();
+        }
+    }
 ?>
