@@ -81,7 +81,7 @@
 
         <div class="FieldContainer">
             <div class="FieldContainer__label">Рейтинг</div>
-            <input type="text" id="rating" class="FieldContainer__field"/>
+            <input type="number" min="1" max="99" value="99" id="rating" class="FieldContainer__field"/>
         </div>
 
         <div class="FieldContainer">
@@ -109,7 +109,10 @@
 
         <div class="FieldContainer">
             <div class="FieldContainer__label">Държава</div>
-            <select id="country" class="FieldContainer__field"></select>
+            <select id="country" class="FieldContainer__field">
+                <option value="bg" selected="selected">Bulgaria</option>
+            </select>
+            
         </div>
 
         <div class="FieldContainer">
